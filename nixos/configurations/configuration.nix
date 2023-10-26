@@ -1,13 +1,14 @@
 { pkgs, lib, ... }:
 
 {
-  imports =
-    [
-      # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ../modules/clash.nix
-      ../modules/bluetooth.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ../modules/nurClash.nix
+    ../modules/bluetooth.nix
+  ];
+  euphgh.bluetoothHeadphones.enable = true;
+  euphgh.nurClash.enable = true;
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -89,8 +90,6 @@
     stdenv.cc
     man-pages
     man-pages-posix
-    bluez
-    bluez-alsa
   ];
   documentation.dev.enable = true;
   programs.nix-ld = {
@@ -102,7 +101,7 @@
   };
 
   fonts = {
-    enableDefaultPackages= false;
+    enableDefaultPackages = false;
     packages = with pkgs; [
       noto-fonts
       noto-fonts-cjk-sans
