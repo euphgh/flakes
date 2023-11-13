@@ -1,5 +1,13 @@
 { config, pkgs, ... }:
 {
+  euphgh.home = {
+    nvim.enable = true;
+    tmux.enable = true;
+    zsh.enable = true;
+    vscode.enable = true;
+    alacritty.enable = true;
+  };
+
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
   programs.home-manager.enable = true;
@@ -10,10 +18,12 @@
     };
   };
 
+
+ 
   home = {
     username = "hgh";
     homeDirectory = "/home/hgh";
-    stateVersion = "23.05";
+    stateVersion = "23.11";
     packages = with pkgs; [
       config.nur.repos.linyinfeng.wemeet
       cachix
@@ -36,6 +46,7 @@
       drawio
       appimage-run
       logseq
+      sops
 
       xclip
       flameshot
@@ -60,10 +71,8 @@
       })
     ];
   };
-  imports = (import ./nvim) ++ (import ./tmux) ++ (import ./zsh) ++ [
-    ./vscode/default.nix
-    ./alacritty/default.nix
-  ];
+
+  xdg.enable = true;
   home.sessionVariables = {
     EDITOR = "nvim";
   };

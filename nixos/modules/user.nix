@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 with lib; let
-  cfg = config.euphgh.hgh;
+  cfg = config.euphgh.sys.hgh;
 in
 {
-  options.euphgh.hgh.enable = mkEnableOption "user 'hgh' (myself)";
+  options.euphgh.sys.hgh.enable = mkEnableOption "user 'hgh' (myself)";
   config = mkIf cfg.enable {
     users.users.hgh = {
       isNormalUser = true;

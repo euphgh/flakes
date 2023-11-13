@@ -20,4 +20,29 @@ rec {
     shellHook = '' export ARCH=riscv '';
   };
   ysyx = nixpkgs.callPackage ./ysyx.nix { inherit cpp-dev riscv-cross; };
+  self-dev =
+    let
+      pyWithPacks = python-dev.override {
+        pyPkgs = (ps: with ps; [
+          xdg
+          (
+            buildPythonPackage {
+              pname = "impurity";
+              version = "0.0.1";
+              src = ./python-impurity;
+              doCheck = false;
+              propagatedBuildInputs = [
+                # Specify dependencies
+              ];
+            }
+          )
+        ]);
+      };
+    in
+    nixpkgs.mkShell {
+      packages = with nixpkgs; [
+        nixd
+      ];
+      inputsFrom = [ pyWithPacks ];
+    };
 }

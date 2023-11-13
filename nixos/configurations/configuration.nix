@@ -1,4 +1,4 @@
-{ pkgs, lib, ... }:
+{ pkgs, lib, inputs, ... }:
 
 {
   imports = [
@@ -6,6 +6,7 @@
     ./hardware-configuration.nix
     ../modules/nurClash.nix
     ../modules/bluetooth.nix
+    ../modules/nix.nix
   ];
   euphgh.bluetoothHeadphones.enable = true;
   euphgh.nurClash.enable = true;
@@ -19,29 +20,6 @@
     "/home".options = [ "compress=zstd" ];
     "/nix".options = [ "compress=zstd" "noatime" ];
   };
-
-  nix = {
-    settings = {
-      substituters = [
-        "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
-        "https://mirrors.bfsu.edu.cn/nix-channels/store"
-        "https://mirrors.ustc.edu.cn/nix-channels/store"
-        "https://cache.nixos.org"
-      ];
-      trusted-users = [ "root" "@wheel" ];
-      auto-optimise-store = lib.mkDefault true;
-      experimental-features = [ "nix-command" "flakes" ];
-      warn-dirty = false;
-      max-jobs = 12;
-    };
-    package = pkgs.nixUnstable;
-    gc = {
-      automatic = true;
-      dates = "weekly";
-    };
-  };
-
-  nixpkgs.config = { allowUnfree = true; };
 
   networking.hostName = "sayurin";
   networking.networkmanager.enable = true;
@@ -109,6 +87,10 @@
       noto-fonts-emoji
       jetbrains-mono
       fira-code
+      iosevka
+      corefonts
+      vistafonts
+      vistafonts-chs
       (nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" "FiraCode" "DroidSansMono" ]; })
     ];
     fontconfig.defaultFonts = pkgs.lib.mkForce {
@@ -149,5 +131,5 @@
   };
   # Enable the OpenSSH daemon.
   services.openssh.enable = true;
-  system.stateVersion = "23.05";
+  system.stateVersion = "23.11";
 }

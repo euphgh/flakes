@@ -1,4 +1,4 @@
-{ config, pkgs, inputs, ... }: {
+{ ... }: {
   imports = [
     ./nurClash.nix
     ./bluetooth.nix

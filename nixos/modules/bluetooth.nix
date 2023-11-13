@@ -1,10 +1,10 @@
 { config, pkgs, lib, ... }:
 with lib;
 let
-  cfg = config.euphgh.bluetoothHeadphones;
+  cfg = config.euphgh.sys.bluetoothHeadphones;
 in
 {
-  options.euphgh.bluetoothHeadphones.enable = mkEnableOption "bluetooth headphones";
+  options.euphgh.sys.bluetoothHeadphones.enable = mkEnableOption "bluetooth headphones";
   config = mkIf cfg.enable {
     hardware.bluetooth.enable = true;
     hardware.pulseaudio.enable = true;

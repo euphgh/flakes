@@ -1,10 +1,7 @@
-{ config, pkgs, lib, ... }:
-with lib;
-let
-  cfg = config.euphgh.nurClash;
-in
+{ config, lib, ... }:
+with lib; let cfg = config.euphgh.sys.nurClash; in
 {
-  options.euphgh.nurClash.enable = mkEnableOption "clash writen by hgh";
+  options.euphgh.sys.nurClash.enable = mkEnableOption "clash writen by hgh";
   config = {
     systemd.services.ClashPre = mkIf cfg.enable {
       enable = true;

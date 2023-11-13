@@ -13,6 +13,10 @@
     # help page
     man-pages
     man-pages-posix
+
+    #editor
+    neovim
+    sops
   ];
   services.openssh = {
     enable = true;

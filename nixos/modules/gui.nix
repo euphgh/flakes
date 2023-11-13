@@ -1,9 +1,9 @@
 { config, lib, pkgs, ... }:
 with lib; let
-  cfg = config.euphgh.gui;
+  cfg = config.euphgh.sys.gui;
 in
 {
-  options.euphgh.gui = {
+  options.euphgh.sys.gui = {
     enable = mkEnableOption "GUI host";
     useChinese = mkOption {
       default = false;
@@ -52,8 +52,8 @@ in
 
         # for web support 
         corefonts
-        # vistafonts
-        # vistafonts-chs
+        vistafonts
+        vistafonts-chs
         (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
       ];
       fontconfig.defaultFonts = {
