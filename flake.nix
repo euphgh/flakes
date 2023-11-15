@@ -7,6 +7,7 @@
 
   outputs = { self, nixpkgs, nur, home-manager, ... }@inputs:
     let
+      releaseVersion = "23.11";
       defaultSysList = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
       foreachSysInList = sys: f: nixpkgs.lib.genAttrs (sys) (system:
         let
@@ -14,36 +15,66 @@
         in
         f p);
       devShellsDir = ./devShells;
+      makeHome =
+        { unixname ? "hgh"
+        , system ? "x86_64-linux"
+        , stateVersion ? releaseVersion
+        }:
+        {
+          ${unixname} = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.${system};
+            modules = [
+              nur.nixosModules.nur
+              self.outputs.nixosModules.euphgh.home
+              (./home + "/${unixname}")
+            ];
+            specialArgs = { inherit stateVersion inputs unixname system; };
+          };
+        };
+      makeNixOS =
+        { hostname
+        , system ? "x86_64-linux"
+        , stateVersion ? releaseVersion
+        , addtionalModule ? []
+        }:
+        {
+          ${hostname} = nixpkgs.lib.nixosSystem {
+            inherit system;
+            modules = [
+              nur.nixosModules.nur
+              self.outputs.nixosModules.euphgh.sys
+              (./nixos + "/${hostname}")
+            ] ++ addtionalModule;
+            specialArgs = { inherit stateVersion inputs hostname system; };
+          };
+        };
     in
     {
-      homeConfigurations."hgh" = home-manager.lib.homeManagerConfiguration {
-        pkgs = nixpkgs.legacyPackages.x86_64-linux;
-        modules = [
-          nur.nixosModules.nur
-          self.outputs.nixosModules.euphgh.home
-          ./home/hgh
-        ];
-      };
-      nixosConfigurations = {
-        sayurin = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            nur.nixosModules.nur
-            ./nixos/configurations/configuration.nix
-          ];
-          specialArgs = { inherit inputs; };
-        };
-        Rikki = nixpkgs.lib.nixosSystem {
-          system = "x86_64-linux";
-          modules = [
-            self.outputs.nixosModules.euphgh.sys
-            ./nixos/configurations/Rikki
-          ];
-          specialArgs = { inherit inputs; };
-        };
-      };
-      nixosModules.euphgh.sys = import ./nixos/modules;
-      nixosModules.euphgh.home = import ./home/modules;
+      homeConfigurations = { }
+        // makeHome { unixname = "hgh"; }
+        // makeHome { unixname = "minusr"; };
+
+      nixosConfigurations = { }
+        // makeNixOS { hostname = "xxpro13"; }
+        // makeNixOS { hostname = "minvm"; };
+      # xxpro13 = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     nur.nixosModules.nur
+      #     ./nixos/xxpro13/configuration.nix
+      #   ];
+      #   specialArgs = { inherit stateVersion inputs; };
+      # };
+      # minvm = nixpkgs.lib.nixosSystem {
+      #   system = "x86_64-linux";
+      #   modules = [
+      #     self.outputs.nixosModules.euphgh.sys
+      #     ./nixos/minvm
+      #   ];
+      #   specialArgs = { inherit stateVersion inputs; };
+      # };
+      nixosModules.euphgh.sys = import ./modules/sys;
+      nixosModules.euphgh.home = import ./modules/home;
       devShells = foreachSysInList defaultSysList (p: import devShellsDir p);
     };
 }

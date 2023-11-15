@@ -1,4 +1,11 @@
-{ pkgs, lib, ... }: {
+{ pkgs, stateVersion, hostname, ... }: {
+  imports = [
+    ./nurClash.nix
+    ./bluetooth.nix
+    ./nix.nix
+    ./gui.nix
+    ./user.nix
+  ];
   environment.systemPackages = with pkgs; [
     # basic dev tools
     stdenv.cc
@@ -17,6 +24,9 @@
     #editor
     neovim
     sops
+
+    # nix repo
+    cachix
   ];
   services.openssh = {
     enable = true;
@@ -27,5 +37,11 @@
     viAlias = true;
     vimAlias = true;
   };
-  system.stateVersion = lib.mkDefault "23.11";
+  programs.git.enable = true;
+  system.stateVersion = stateVersion;
+
+  networking.hostName = hostname;
+  networking.firewall = {
+    enable = true;
+  };
 }

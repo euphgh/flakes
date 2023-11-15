@@ -53,7 +53,7 @@ in
         # for web support 
         corefonts
         vistafonts
-        vistafonts-chs
+        # vistafonts-chs
         (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
       ];
       fontconfig.defaultFonts = {

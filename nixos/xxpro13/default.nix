@@ -4,12 +4,12 @@
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../modules/nurClash.nix
-    ../modules/bluetooth.nix
-    ../modules/nix.nix
+    ../../modules/sys
   ];
-  euphgh.bluetoothHeadphones.enable = true;
-  euphgh.nurClash.enable = true;
+  euphgh.sys = {
+    bluetoothHeadphones.enable = true;
+    nurClash.enable = true;
+  };
 
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
@@ -65,6 +65,7 @@
   security.sudo.wheelNeedsPassword = false;
 
   environment.systemPackages = with pkgs; [
+    cacheix
     stdenv.cc
     man-pages
     man-pages-posix
@@ -100,21 +101,6 @@
       emoji = [ "Noto Color Emoji" ];
     };
   };
-  programs.git = {
-    enable = true;
-    config = {
-      init = {
-        defaultBranch = "main";
-      };
-      user = {
-        name = "Guanghui Hu";
-        email = "120L052208@stu.hit.edu.cn";
-      };
-      core = {
-        editor = "nvim";
-      };
-    };
-  };
   virtualisation = {
     podman = {
       enable = true;
@@ -124,12 +110,4 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
-  users.extraGroups.docker.members = [ "hgh" ];
-
-  networking.firewall = {
-    enable = true;
-  };
-  # Enable the OpenSSH daemon.
-  services.openssh.enable = true;
-  system.stateVersion = "23.11";
 }

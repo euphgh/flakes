@@ -1,19 +1,15 @@
 { config, pkgs, lib, ... }:
 {
   euphgh.sys = {
-    gui.enable = false;
+    gui.enable = true;
     hgh.enable = true;
   };
 
-  imports = [
-    ../hardware-configuration.nix
-  ];
-
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-  networking.hostName = "Rikki"; # Define your hostname.
+  boot.loader = {
+    systemd-boot.enable = true;
+    efi.canTouchEfiVariables = true;
+  };
   networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
-  networking.firewall.enable = true;
 
   # Set your time zone.
   time.timeZone = "Asia/Hong_Kong";

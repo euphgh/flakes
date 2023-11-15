@@ -1,79 +1,44 @@
 { config, pkgs, ... }:
 {
+  imports = [ ./git.nix ];
+
+  # configurable app
   euphgh.home = {
     nvim.enable = true;
     tmux.enable = true;
     zsh.enable = true;
     vscode.enable = true;
     alacritty.enable = true;
+    tex.enable = true;
   };
 
-  programs.direnv.enable = true;
-  programs.direnv.nix-direnv.enable = true;
-  programs.home-manager.enable = true;
-  nixpkgs = {
-    config = {
-      allowUnfree = true;
-      allowUnfreePredicate = (_: true);
-    };
+  # unconfigurable app
+  euphgh.home = {
+    devCli.enable = true;
+    utilCli.enable = true;
+    utilGui.enable = true;
   };
 
+  # more unconfigurable app
+  home.packages = with pkgs; [
+    # util cli
+    neofetch
+    sshfs
 
- 
+    #gui tools
+    gtkwave
+    logseq
+    drawio
+    musescore
+
+    # vedio
+    qbittorrent
+    vlc
+  ];
+
   home = {
-    username = "hgh";
-    homeDirectory = "/home/hgh";
-    stateVersion = "23.11";
-    packages = with pkgs; [
-      config.nur.repos.linyinfeng.wemeet
-      cachix
-      chromium
-      qq
-      qbittorrent
-      vlc
-      plex-media-player
-      mpv
-      fd
-      btop
-      ripgrep
-      jdk17_headless
-      mill
-      stdenv.cc
-      gdb
-      lldb_15
-      gnumake
-      sshfs
-      drawio
-      appimage-run
-      logseq
-      sops
-
-      xclip
-      flameshot
-      neofetch
-      trashy
-      patchelf
-      file
-      gtkwave
-      python3
-
-      # compress
-      p7zip
-      rar
-      zip
-      unzip
-      musescore
-
-      bear
-      bat
-      (pkgs.texlive.combine {
-        inherit (pkgs.texlive) scheme-full;
-      })
-    ];
-  };
-
-  xdg.enable = true;
-  home.sessionVariables = {
-    EDITOR = "nvim";
+    sessionVariables = {
+      EDITOR = "code";
+    };
   };
 }
