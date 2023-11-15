@@ -25,8 +25,9 @@
     neovim
     sops
 
-    # nix repo
+    # more config
     cachix
+    home-manager
   ];
   services.openssh = {
     enable = true;
