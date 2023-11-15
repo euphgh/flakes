@@ -28,7 +28,7 @@
               self.outputs.nixosModules.euphgh.home
               (./home + "/${unixname}")
             ];
-            specialArgs = { inherit stateVersion inputs unixname system; };
+            extraSpecialArgs = { inherit stateVersion inputs unixname system; };
           };
         };
       makeNixOS =
