@@ -1,7 +1,7 @@
 { pkgs, lib, config, ... }:
-with lib; let cfg = config.euphgh.home.utilCli; in
+with lib; let cfg = config.euphgh.home.devCli; in
 {
-  options.euphgh.home.utilCli.enable = mkEnableOption "util command line tools";
+  options.euphgh.home.devCli.enable = mkEnableOption "develop command line tools";
   config = mkIf cfg.enable {
     home = {
       packages = with pkgs; [
