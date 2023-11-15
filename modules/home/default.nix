@@ -6,6 +6,8 @@
     ./vscode
     ./zsh
     ./utilCli.nix
+    ./utilGui.nix
+    ./devCli.nix
     ./tex.nix
   ];
   config = {
