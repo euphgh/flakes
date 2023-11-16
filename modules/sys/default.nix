@@ -1,10 +1,11 @@
-{ pkgs, stateVersion, hostname, ... }: {
+{ config, pkgs, stateVersion, hostname, inputs, system, ... }: {
   imports = [
     ./nurClash.nix
     ./bluetooth.nix
     ./nix.nix
     ./gui.nix
     ./user.nix
+    inputs.home-manager.nixosModules.home-manager
   ];
   environment.systemPackages = with pkgs; [
     # basic dev tools
@@ -45,4 +46,13 @@
   networking.firewall = {
     enable = true;
   };
+
+  #home-manaager system level config
+  home-manager.useGlobalPkgs = true;
+  home-manager.useUserPackages = true;
+  home-manager.extraSpecialArgs = { inherit stateVersion inputs system; };
+  home-manager.sharedModules = [
+    inputs.nur.nixosModules.nur
+    inputs.self.outputs.nixosModules.euphgh.home
+  ];
 }

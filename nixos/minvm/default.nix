@@ -1,8 +1,17 @@
-{ config, pkgs, lib, ... }:
+{ config, pkgs, lib, inputs, ... }:
 {
   euphgh.sys = {
     gui.enable = true;
-    hgh.enable = true;
+    users = {
+      hgh = {
+        enable = true;
+        withHome = false;
+      };
+      foo = {
+        enable = true;
+        withHome = true;
+      };
+    };
   };
 
   boot.loader = {
