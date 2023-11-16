@@ -305,5 +305,6 @@
           "name": "upLaTeXmk-DVIPDFMx"
       }
   ],
-  "latex-workshop.view.pdf.viewer": "tab"
+  "latex-workshop.view.pdf.viewer": "tab",
+  "path-intellisense.absolutePathToWorkspace": false
 }
