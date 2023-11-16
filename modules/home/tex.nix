@@ -1,8 +1,8 @@
 { lib, pkgs, config, ... }:
-with lib; let cfg = config.euphgh.tex;
+with lib; let cfg = config.euphgh.home.tex;
 in
 {
-  options.euphgh.tex.enable = mkEnableOption "TeXLive Full";
+  options.euphgh.home.tex.enable = mkEnableOption "TeXLive Full";
   config = mkIf cfg.enable {
     home.packages = [
       (pkgs.texlive.combine {
