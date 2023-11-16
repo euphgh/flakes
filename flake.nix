@@ -35,7 +35,7 @@
         { hostname
         , system ? "x86_64-linux"
         , stateVersion ? releaseVersion
-        , addtionalModule ? []
+        , addtionalModule ? [ ]
         }:
         {
           ${hostname} = nixpkgs.lib.nixosSystem {
@@ -52,29 +52,18 @@
     {
       homeConfigurations = { }
         // makeHome { unixname = "hgh"; }
-        // makeHome { unixname = "minusr"; };
+        // makeHome { unixname = "foo"; };
 
       nixosConfigurations = { }
         // makeNixOS { hostname = "xxpro13"; }
         // makeNixOS { hostname = "minvm"; };
-      # xxpro13 = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [
-      #     nur.nixosModules.nur
-      #     ./nixos/xxpro13/configuration.nix
-      #   ];
-      #   specialArgs = { inherit stateVersion inputs; };
-      # };
-      # minvm = nixpkgs.lib.nixosSystem {
-      #   system = "x86_64-linux";
-      #   modules = [
-      #     self.outputs.nixosModules.euphgh.sys
-      #     ./nixos/minvm
-      #   ];
-      #   specialArgs = { inherit stateVersion inputs; };
-      # };
+
       nixosModules.euphgh.sys = import ./modules/sys;
       nixosModules.euphgh.home = import ./modules/home;
       devShells = foreachSysInList defaultSysList (p: import devShellsDir p);
+
+      utils = import ./utils { lib = nixpkgs.lib; } // {
+        inherit makeHome;
+      };
     };
 }

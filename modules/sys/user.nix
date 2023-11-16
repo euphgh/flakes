@@ -17,15 +17,14 @@ with lib; let
 
       transHomeConfig = name: value:
         let
-          homeModule =
-            { ... }: {
-              imports = [ (../../home + "/${name}") ];
-              home = {
-                stateVersion = stateVersion;
-                username = name;
-                homeDirectory = "/home/${name}";
-              };
+          homeModule = { ... }: {
+            imports = [ (../../home + "/${name}") ];
+            home = {
+              stateVersion = stateVersion;
+              username = name;
+              homeDirectory = "/home/${name}";
             };
+          };
         in
         mkIf cfg.${name}.withHome homeModule;
     in

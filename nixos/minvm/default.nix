@@ -1,7 +1,7 @@
 { config, pkgs, lib, inputs, ... }:
 {
   euphgh.sys = {
-    gui.enable = true;
+    gui.enable = false;
     users = {
       hgh = {
         enable = true;
