@@ -1,13 +1,11 @@
 { ... }: {
   programs.git = {
     enable = true;
-    config = {
+    userName = "Guanghui Hu";
+    userEmail = "120L052208@stu.hit.edu.cn";
+    extraConfig = {
       init = {
         defaultBranch = "main";
-      };
-      user = {
-        name = "Guanghui Hu";
-        email = "120L052208@stu.hit.edu.cn";
       };
       core = {
         editor = "nvim";
