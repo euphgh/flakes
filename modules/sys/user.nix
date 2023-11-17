@@ -11,41 +11,56 @@ with lib; let
             description = "";
             extraGroups = [ "wheel" ];
             initialPassword = "nix";
-          } // value;
+            createHome = true;
+          } // (builtins.removeAttrs value [ "homeConfig" ]);
         in
-        mkIf cfg.${name}.enable userConfig;
+        userConfig;
 
       transHomeConfig = name: value:
         let
+          makeHomeOrNot = (value ? homeConfig)
+            && (builtins.isList value.homeConfig)
+            && (value.homeConfig != [ ]);
           homeModule = {
-            imports = [
-              (utils.homeConfigsDir + "/${name}")
-              ({ euphgh.home.specialArgs.username = name; })
-            ];
+            imports = utils.mapIfExist
+              (utils.defaultHome)
+              (homeRoot: homeRoot + /${name})
+              (value.homeConfig);
           };
         in
-        mkIf cfg.${name}.withHome homeModule;
+        mkIf makeHomeOrNot homeModule;
     in
     {
-      users.users = (lib.attrsets.mapAttrs transUserDefine usersAttrset);
-      home-manager.users = (lib.attrsets.mapAttrs transHomeConfig usersAttrset);
+      users.users = (lib.mapAttrs transUserDefine usersAttrset);
+      home-manager.users = (lib.mapAttrs transHomeConfig usersAttrset);
     };
 in
 {
-  options.euphgh.sys.users = {
-    hgh = {
-      enable = mkEnableOption "user 'hgh' (myself)";
-      withHome = mkEnableOption "config hgh's home";
+  options.euphgh.sys.users = mkOption {
+    default = { };
+    type = types.attrs;
+    example = {
+      isNormalUser = true;
+      extraGroups = [ "wheel" ];
+      homeConfig = [
+        (./path/to/home-config)
+        ({ ... }: {
+          euphgh.home.specialArgs = {
+            foo = 12;
+          };
+        })
+        utils.defaultHome
+      ];
     };
-    foo = {
-      enable = mkEnableOption "user 'foo' (test user)";
-      withHome = mkEnableOption "config foo's home";
-    };
+    description = ''
+      any config under user.users.<name>.
+      besides, `homeConfig` option can be add
+      which are anything can be as home-manager imports
+      if let it empty, system will not set home-manager for the user
+      particular value `utils.defaultHome` is used to pointed as homeConfigsDir
+      you also can define euphgh.home.specialArgs in it.
+    '';
   };
 
-  # define user like config.users.users
-  config = createUserAndHome {
-    hgh.description = "Guanghui Hu";
-    foo.description = "minimal user for test";
-  };
+  config = createUserAndHome cfg;
 }

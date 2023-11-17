@@ -1,15 +1,12 @@
-{ config, pkgs, lib, ... }@inputs:
+{ config, pkgs, lib, self, ... }@inputs:
 {
   euphgh.sys = {
     gui.enable = false;
     users = {
-      hgh = {
-        enable = true;
-        withHome = false;
-      };
+      hgh.description = "Guanghui Hu";
       foo = {
-        enable = true;
-        withHome = true;
+        description = "minimal user for test";
+        homeConfig = [ self.utils.defaultHome ];
       };
     };
   };

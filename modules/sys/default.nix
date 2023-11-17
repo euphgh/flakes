@@ -54,4 +54,5 @@
     nur.nixosModules.nur
     self.outputs.nixosModules.euphgh.home
   ];
+  home-manager.extraSpecialArgs = builtins.removeAttrs inputs [ "pkgs" "config" "options" "lib" ];
 }

@@ -70,6 +70,18 @@ rec {
       extraSpecialArgs = paramSet;
     };
 
+  defaultHome = homeConfigsDir;
+  mapAttrsRmEmpty = f: set:
+    let
+      listRes = (map (attr: { name = attr; value = f attr set.${attr}; }) (builtins.attrNames set));
+      valueIsEmpty = pair: pair.value == { };
+    in
+    builtins.listToAttrs (builtins.filter valueIsEmpty listRes);
+  
+  mapIfExist = ele: f: list: let
+    mapFn = x: if x == ele then (f x) else x;
+  in builtins.map mapFn list;
+
 
 
   #create home-manager
