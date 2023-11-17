@@ -1,4 +1,4 @@
-{ config, lib, stateVersion, self, ... }@inputs:
+{ config, lib, self, ... }@inputs:
 with lib; let
   cfg = config.euphgh.sys.users;
   inherit (self) utils;
@@ -17,15 +17,11 @@ with lib; let
 
       transHomeConfig = name: value:
         let
-          # homeModule = self.utils.evalHomeModule
-          #   (inputs // { username = name; });
-          homeModule = { ... }: {
-            imports = [ (../../home + "/${name}") ];
-            home = {
-              stateVersion = stateVersion;
-              username = name;
-              homeDirectory = "/home/${name}";
-            };
+          homeModule = {
+            imports = [
+              (utils.homeConfigsDir + "/${name}")
+              ({ euphgh.home.specialArgs.username = name; })
+            ];
           };
         in
         mkIf cfg.${name}.withHome homeModule;
