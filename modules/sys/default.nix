@@ -1,4 +1,4 @@
-{ config, pkgs, stateVersion, hostname, inputs, system, ... }: {
+{ config, pkgs, stateVersion, hostname, system, ... }@inputs: {
   imports = [
     ./nurClash.nix
     ./bluetooth.nix

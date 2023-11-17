@@ -49,7 +49,7 @@ rec {
           ] ++ [ (nixosConfigsDir + "/${name}") ];
 
           # specialArgs: optianl, submodule argment
-          specialArgs = paramSet;
+          specialArgs = paramSet // { hostname = name; };
         };
     in
     lib.mapAttrs transNixOS sysAttrSet;

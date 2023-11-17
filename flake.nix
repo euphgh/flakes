@@ -38,28 +38,9 @@
       #   // makeHome { unixname = "hgh"; }
       #   // makeHome { unixname = "foo"; };
 
-      # nixosConfigurations = utils.createNixOS {
-      #   xxpro13 = defaultParamSet;
-      #   minvm = defaultParamSet;
-      # };
-
-      nixosConfigurations.minvm = nixpkgs.lib.nixosSystem {
-        # system: must specifiy
-        system = "x86_64-linux";
-
-        # modules: must specifiy, put all modules there
-        modules = [
-          nur.nixosModules.nur
-          self.outputs.nixosModules.euphgh.sys
-        ] ++ [ ./nixos/minvm ];
-
-        # specialArgs: optianl, submodule argment
-        specialArgs = {
-          # inherit (inputs) home-manager nixpkgs nur self;
-          hostname = "minvm";
-          stateVersion = "23.05";
-          system = "x86_64-linux";
-        };
+      nixosConfigurations = utils.createNixOS {
+        xxpro13 = defaultParamSet;
+        minvm = defaultParamSet;
       };
 
       nixosModules.euphgh.sys = import ./modules/sys;

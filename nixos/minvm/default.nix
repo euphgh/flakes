@@ -1,4 +1,4 @@
-{ config, pkgs, lib, inputs, ... }:
+{ config, pkgs, lib, ... }@inputs:
 {
   euphgh.sys = {
     gui.enable = false;
