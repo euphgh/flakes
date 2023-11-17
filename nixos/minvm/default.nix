@@ -9,7 +9,7 @@
       };
       foo = {
         enable = true;
-        withHome = true;
+        withHome = false;
       };
     };
   };

@@ -47,12 +47,12 @@
     enable = true;
   };
 
-  #home-manaager system level config
-  home-manager.useGlobalPkgs = true;
-  home-manager.useUserPackages = true;
-  home-manager.extraSpecialArgs = { inherit stateVersion inputs system; };
-  home-manager.sharedModules = [
-    inputs.nur.nixosModules.nur
-    inputs.self.outputs.nixosModules.euphgh.home
-  ];
+  # #home-manaager system level config
+  # home-manager.useGlobalPkgs = true;
+  # home-manager.useUserPackages = true;
+  # home-manager.extraSpecialArgs = { inherit stateVersion inputs system; };
+  # home-manager.sharedModules = [
+  #   inputs.nur.nixosModules.nur
+  #   inputs.self.outputs.nixosModules.euphgh.home
+  # ];
 }

@@ -1,7 +1,7 @@
-{ config, lib, stateVersion, inputs, ... }:
+{ config, lib, stateVersion, self, ... }@inputs:
 with lib; let
   cfg = config.euphgh.sys.users;
-  utils = inputs.self.utils;
+  inherit (self) utils;
   createUserAndHome = usersAttrset:
     let
       transUserDefine = name: value:
@@ -17,6 +17,8 @@ with lib; let
 
       transHomeConfig = name: value:
         let
+          # homeModule = self.utils.evalHomeModule
+          #   (inputs // { username = name; });
           homeModule = { ... }: {
             imports = [ (../../home + "/${name}") ];
             home = {
@@ -47,11 +49,7 @@ in
 
   # define user like config.users.users
   config = createUserAndHome {
-    hgh = {
-      description = "Guanghui Hu";
-    };
-    foo = {
-      description = "minimal user for test";
-    };
+    hgh.description = "Guanghui Hu";
+    foo.description = "minimal user for test";
   };
 }
