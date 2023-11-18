@@ -21,8 +21,13 @@ rec {
   homeModulesDir = rootPath + /modules/home;
   nixosModulesDir = rootPath + /modules/sys;
 
+  defaultParamSet = {
+    system = "x86_64-linux";
+    stateVersion = "23.05";
+  } // inputs;
+
   # write a callable and overridable attrbute set
-  fooParamSet = overrideAttrSet (makeCallable { });
+  callableAndoverridable = overrideAttrSet (makeCallable { });
 
   # default system enum
   defaultSysList = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
@@ -31,68 +36,68 @@ rec {
   foreachSysInList = sys: f: nixpkgs.lib.genAttrs (sys) (system:
     let p = { nixpkgs = nixpkgs.legacyPackages.${system}; }; in f p);
 
-  # create nixos like normal
-  createNixOS = sysAttrSet:
+  mapIfExist = ele: f: list:
     let
-      transNixOS = name: value:
-        let
-          paramSet = value;
+      mapFn = x: if x == ele then (f x) else x;
+    in
+    builtins.map mapFn list;
+
+  dir2Conf = dir: attrs:
+    let
+      inherit (builtins) readDir concatLists;
+      dirInfo = readDir dir;
+      dirMapFn = name: value: defaultParamSet // {
+        modules = [ (dir + /${name}) ];
+      };
+      flkMapFn = name: value: defaultParamSet // value // {
+        modules = concatLists [
+          value.append
+          (if dirInfo?${name} then [ (dir + /${name}) ] else [ ])
+        ];
+      };
+    in
+    lib.mapAttrs dirMapFn dirInfo // lib.mapAttrs flkMapFn attrs;
+
+  # create nixos with special args
+  createNixOS = attrs:
+    let
+      makeNixOS = name: value:
+        let specialArgs = builtins.removeAttrs value [ "modules" "append" ];
         in
         nixpkgs.lib.nixosSystem {
           # system: must specifiy
-          inherit (paramSet) system;
+          inherit (specialArgs) system;
 
           # modules: must specifiy, put all modules there
-          modules = with paramSet; [
+          modules = with specialArgs; [
             nur.nixosModules.nur
             self.outputs.nixosModules.euphgh.sys
-          ] ++ [ (nixosConfigsDir + "/${name}") ];
+          ] ++ value.modules;
 
           # specialArgs: optianl, submodule argment
-          specialArgs = paramSet // { hostname = name; };
+          specialArgs = specialArgs // { hostname = name; };
         };
     in
-    lib.mapAttrs transNixOS sysAttrSet;
+    lib.mapAttrs makeNixOS (dir2Conf nixosConfigsDir attrs);
 
-
-  evalHomeModule = { username, system, ... }@paramSet:
-    home-manager.lib.homeManagerConfiguration {
-      # pkgs: required, pkgs for home-manager, no overlay
-      pkgs = nixpkgs.legacyPackages.${system};
-
-      # modules: required, put all modules there
-      modules = with paramSet; [
-        nur.nixosModules.nur
-        self.outputs.nixosModules.euphgh.home
-      ] ++ [ (homeConfigsDir + "/${username}") ];
-
-      # specialArgs: optianl, home-manager submodule argment
-      extraSpecialArgs = paramSet;
-    };
-
-  defaultHome = homeConfigsDir;
-  mapAttrsRmEmpty = f: set:
+  # create home with speical args
+  createHome = attrs:
     let
-      listRes = (map (attr: { name = attr; value = f attr set.${attr}; }) (builtins.attrNames set));
-      valueIsEmpty = pair: pair.value == { };
+      makeHome = name: value:
+        let
+          specialArgs = builtins.removeAttrs value [ "modules" "append" ];
+        in
+        home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.${specialArgs.system};
+          modules = with specialArgs; [
+            nur.nixosModules.nur
+            self.outputs.nixosModules.euphgh.home
+          ] ++ value.modules;
+          extraSpecialArgs = specialArgs;
+        };
     in
-    builtins.listToAttrs (builtins.filter valueIsEmpty listRes);
-  
-  mapIfExist = ele: f: list: let
-    mapFn = x: if x == ele then (f x) else x;
-  in builtins.map mapFn list;
+    lib.mapAttrs makeHome (dir2Conf homeConfigsDir attrs);
 
-
-
-  #create home-manager
-
-  #   mkBoolOption = { ... }@args:
-  #     let
-  #       inputs = {
-  #         default = false;
-  #         example = true;
-  #         type = lib.types.bool;
-  #       } // args;
-  #     in
-  #     lib.mkOption inputs;
+  # speical variable for home in nixos
+  defaultHome = homeConfigsDir;
 }
