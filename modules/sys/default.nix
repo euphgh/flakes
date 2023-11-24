@@ -1,11 +1,15 @@
 { config, pkgs, stateVersion, hostname, system, ... }@inputs: {
   imports = [
     ./nurClash.nix
+    ./clash
+    ./clash/rule.nix
     ./bluetooth.nix
     ./nix.nix
     ./gui.nix
     ./user.nix
+    ./sops.nix
     inputs.home-manager.nixosModules.home-manager
+    inputs.sops-nix.nixosModules.sops
   ];
   environment.systemPackages = with pkgs; [
     # basic dev tools
@@ -33,6 +37,7 @@
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
+    
   };
   programs.neovim = {
     enable = true;
@@ -44,7 +49,7 @@
 
   networking.hostName = hostname;
   networking.firewall = {
-    enable = true;
+    enable = false;
   };
 
   #home-manaager system level config

@@ -2,6 +2,11 @@
 {
   euphgh.sys = {
     gui.enable = false;
+    sops.enable = true;
+    clash = {
+      enable = true;
+      configPath = config.sops.templates."clash-config.yaml".path;
+    };
     users = {
       hgh.description = "Guanghui Hu";
       foo = {
