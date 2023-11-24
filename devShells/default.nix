@@ -16,7 +16,10 @@ rec {
       bc # for Linux kernel build
       ncurses # for menuconfig
     ];
-    inputsFrom = [ riscv-cross ];
+    inputsFrom = [
+      riscv-cross
+      cpp-dev
+    ];
     shellHook = '' export ARCH=riscv '';
   };
   ysyx = nixpkgs.callPackage ./ysyx.nix { inherit cpp-dev riscv-cross; };
