@@ -306,5 +306,6 @@
       }
   ],
   "latex-workshop.view.pdf.viewer": "tab",
-  "path-intellisense.absolutePathToWorkspace": false
+  "path-intellisense.absolutePathToWorkspace": false,
+  "search.useGlobalIgnoreFiles": true
 }
