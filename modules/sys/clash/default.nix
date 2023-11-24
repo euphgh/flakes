@@ -1,11 +1,11 @@
 { pkgs, config, lib, ... }:
 with lib;
 let
-  cfg = config.services.clash;
+  cfg = config.euphgh.sys.clash;
   defaultUser = "clash";
 in
 {
-  options.services.clash = {
+  options.euphgh.sys.clash = {
     enable = mkEnableOption "clash service";
     package = mkOption {
       type = types.package;
@@ -62,7 +62,8 @@ in
           WorkingDirectory = "${cfg.workingDirectory}";
           ExecStartPre = "${pkgs.coreutils}/bin/ln -s ${pkgs.clash-geoip}/etc/clash/Country.mmdb ${cfg.configDirectory}";
           ExecStart = "${lib.getExe cfg.package}"
-            + " -d ${cfg.configDirectory}"
+            + " --help"
+            # + " -d ${cfg.configDirectory}"
             + " -f ${cfg.configPath}";
           Restart = "on-failure";
           CapabilityBoundingSet = [ "CAP_NET_ADMIN" "CAP_NET_RAW" "CAP_NET_BIND_SERVICE" ];
