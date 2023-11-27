@@ -9,7 +9,7 @@
   outputs = inputs: rec {
     utils = (import ./utils) inputs;
 
-    homeConfigurations = utils.creatHome { };
+    homeConfigurations = utils.createHome { };
     nixosConfigurations = utils.createNixOS { };
 
     nixosModules.euphgh.sys = import ./modules/sys;
