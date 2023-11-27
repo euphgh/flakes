@@ -1,9 +1,9 @@
 { lib
 , mkShell
 , stdenv
-, callPackage
   # other devShell
 , cpp-dev
+, python-dev
 , riscv-cross
   # hardware tools
 , verilator
@@ -28,7 +28,8 @@
 , libgccjit # for iSTA
 , libunwind # for iSTA
 , zlib
-}: mkShell {
+}:
+mkShell {
   packages = [
     # for navy flip bird app
     SDL
@@ -49,7 +50,7 @@
   inputsFrom = [
     cpp-dev
     riscv-cross
-    (callPackage ./basic/python.nix { })
+    python-dev
   ];
   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
     libgccjit # for iSTA
