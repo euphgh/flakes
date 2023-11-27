@@ -92,6 +92,11 @@ rec {
           modules = with specialArgs; [
             nur.nixosModules.nur
             self.outputs.nixosModules.euphgh.home
+            ({ ... }: {
+              config.euphgh.home.specialArgs = {
+                  username = name;
+              };
+            })
           ] ++ value.modules;
           extraSpecialArgs = specialArgs;
         };
