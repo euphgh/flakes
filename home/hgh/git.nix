@@ -7,6 +7,7 @@
       "*~"
       "*.swp"
       ".direnv/"
+      ".cache/"
       ".envrc"
     ];
     extraConfig = {
