@@ -23,6 +23,7 @@ with lib; let cfg = config.euphgh.home.vscode; in
 
         # cpp
         llvm-vs-code-extensions.vscode-clangd
+        vadimcn.vscode-lldb
         # nix
         bbenoist.nix
         jnoortheen.nix-ide
