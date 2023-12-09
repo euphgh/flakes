@@ -5,6 +5,7 @@
 , bear
 , gnumake
 , ccache
+, lldb
 }:
 mkShell {
   packages = [
@@ -14,6 +15,7 @@ mkShell {
     bear
     ccache
     gnumake
+    lldb
   ];
   shellHook = ''
   ccache --set-config=sloppiness=locale,time_macros
