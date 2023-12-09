@@ -22,10 +22,12 @@ with lib; let
             && (builtins.isList value.homeConfig)
             && (value.homeConfig != [ ]);
           homeModule = {
-            imports = utils.mapIfExist
+            imports = (utils.mapIfExist
               (utils.defaultHome)
               (homeRoot: homeRoot + /${name})
-              (value.homeConfig);
+              (value.homeConfig)) ++ [({
+                euphgh.home.specialArgs.username = name;
+              })];
           };
         in
         mkIf makeHomeOrNot homeModule;
