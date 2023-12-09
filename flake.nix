@@ -1,4 +1,5 @@
 {
+  description = "euphgh create flake, including system, home, modules, templates, devShells";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nur = {
@@ -25,5 +26,13 @@
     nixosModules.euphgh.home = import ./modules/home;
 
     devShells = with utils; foreachSysInList defaultSysList (p: import devShellsDir p);
+
+    templates = rec {
+      shell = {
+        path = ./templates/devShell;
+        description = "flake with only devShells using euphgh";
+      };
+      default = shell;
+    };
   };
 }
