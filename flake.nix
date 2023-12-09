@@ -2,10 +2,7 @@
   description = "euphgh create flake, including system, home, modules, templates, devShells";
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur = {
-      url = "github:nix-community/NUR";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    nur.url = "github:nix-community/NUR";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -31,6 +28,7 @@
       shell = {
         path = ./templates/devShell;
         description = "flake with only devShells using euphgh";
+        welcomeText = "welcome to use euphgh's devShells flake template !!!!!";
       };
       default = shell;
     };

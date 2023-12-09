@@ -1,4 +1,6 @@
 {
+  description = "please modify your flake description here";
+
   inputs = {
     nixpkgs.follows = "euphgh/nixpkgs";
     euphgh.url = "github:euphgh/flakes";
@@ -23,7 +25,7 @@
         ##################################################
 
         # 1. only use devShell defined in euphgh flakes
-        # foo = euphghShells.cpp-dev;
+        foo = euphghShells.cpp-dev;
 
         # 2. use devShell defined in euphgh flakes to create new devShell
         default = nixpkgs.mkShell {
