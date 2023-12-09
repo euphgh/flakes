@@ -24,6 +24,8 @@
     # util cli
     neofetch
     sshfs
+    mill
+    jdk17_headless
 
     #gui tools
     gtkwave
