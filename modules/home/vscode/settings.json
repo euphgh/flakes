@@ -1,4 +1,5 @@
 {
+  "extensions.autoUpdate": false,
   "update.mode": "none",
   "terminal.integrated.defaultProfile.linux": "zsh",
   "editor.formatOnSave": true,
@@ -191,7 +192,6 @@
     "zh-hans": true
   },
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Nord",
   "metals.serverVersion": "1.1.0",
   "python.formatting.provider": "black",
   "python.analysis.inlayHints.variableTypes": true,
@@ -307,5 +307,11 @@
   ],
   "latex-workshop.view.pdf.viewer": "tab",
   "path-intellisense.absolutePathToWorkspace": false,
-  "search.useGlobalIgnoreFiles": true
+  "search.useGlobalIgnoreFiles": true,
+  "lldb.suppressUpdateNotifications": true,
+  "workbench.colorTheme": "Nord",
+  "gitlens.graph.minimap.enabled": false,
+  "gitlens.graph.minimap.additionalTypes": [
+    "localBranches"
+  ]
 }

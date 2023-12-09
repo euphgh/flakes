@@ -21,6 +21,7 @@
     programs.direnv.enable = true;
     programs.direnv.nix-direnv.enable = true;
     programs.home-manager.enable = true;
+    nixpkgs.config.allowUnfree = true;
     home = with lib; rec {
       stateVersion = mkDefault inputs.stateVersion;
       username = config.euphgh.home.specialArgs.username;

@@ -13,7 +13,7 @@ with lib; let cfg = config.euphgh.home.vscode; in
         # icon theme
         pkief.material-icon-theme
         # git
-        mhutchie.git-graph
+        eamodio.gitlens
         # nix reproduce
         mkhl.direnv
         # path auto complete
@@ -37,6 +37,8 @@ with lib; let cfg = config.euphgh.home.vscode; in
         # python
         ms-python.python
         ms-python.vscode-pylance
+        # slides
+        antfu.slidev
       ];
     };
   };
