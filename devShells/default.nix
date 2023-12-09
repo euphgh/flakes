@@ -23,7 +23,7 @@ rec {
     shellHook = '' export ARCH=riscv '';
   };
   ysyx = nixpkgs.callPackage ./ysyx.nix {
-    inherit riscv-cross python-dev;
+    inherit riscv-dev python-dev;
     cpp-dev = cpp-dev.override {
       clang-tools = nixpkgs.clang-tools_15;
       clang = nixpkgs.clang_15;

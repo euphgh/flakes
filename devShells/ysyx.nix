@@ -4,7 +4,7 @@
   # other devShell
 , cpp-dev
 , python-dev
-, riscv-cross
+, riscv-dev
   # hardware tools
 , verilator
   # advance c tools and libs
@@ -49,7 +49,7 @@ mkShell {
   ];
   inputsFrom = [
     cpp-dev
-    riscv-cross
+    riscv-dev
     python-dev
   ];
   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
