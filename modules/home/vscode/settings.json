@@ -29,78 +29,6 @@
   "vim.normalModeKeyBindings": [
     {
       "before": [
-        "<leader>",
-        "g",
-        "s"
-      ],
-      "commands": [
-        "git.stageChange"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "m"
-      ],
-      "commands": [
-        "bookmarks.toggle"
-      ]
-    },
-    {
-      "before": [
-        "<leader>",
-        "bl"
-      ],
-      "commands": [
-        "bookmarks.list"
-      ]
-    },
-    {
-      "before": [
-        "]",
-        "p"
-      ],
-      "commands": [
-        "editor.action.marker.prevInFiles"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "p"
-      ],
-      "commands": [
-        "editor.action.marker.nextInFiles"
-      ]
-    },
-    {
-      "before": [
-        "[",
-        "b"
-      ],
-      "commands": [
-        "workbench.action.previousEditor"
-      ]
-    },
-    {
-      "before": [
-        "]",
-        "b"
-      ],
-      "commands": [
-        "workbench.action.nextEditor"
-      ]
-    },
-    {
-      "before": [
-        "<C-n>"
-      ],
-      "commands": [
-        ":nohl"
-      ]
-    },
-    {
-      "before": [
         "K"
       ],
       "commands": [
@@ -140,32 +68,6 @@
         "h",
         "enter"
       ]
-    },
-    {
-      "before": [
-        "<C-d>"
-      ],
-      "after": [
-        "2",
-        "5",
-        "g",
-        "j",
-        "z",
-        "z"
-      ]
-    },
-    {
-      "before": [
-        "<C-u>"
-      ],
-      "after": [
-        "2",
-        "5",
-        "g",
-        "k",
-        "z",
-        "z"
-      ]
     }
   ],
   "files.watcherExclude": {
@@ -201,117 +103,12 @@
   "python.analysis.completeFunctionParens": true,
   "python.analysis.autoFormatStrings": true,
   "window.zoomLevel": -1,
-  "bookmarks.label.suggestion": "useWhenSelected",
-  "bookmarks.showCommandsInContextMenu": true,
-  "latex-workshop.latex.autoBuild.run": "onSave",
-  "latex-workshop.latex.recipe.default": "XeLaTeXmk",
-  "latex-workshop.latex.recipes": [
-      {
-          "name": "XeLaTeXmk",
-          "tools": [
-              "XeLaTeXmk"
-          ]
-      },
-      {
-          "name": "pdfLaTeXmk",
-          "tools": [
-              "pdfLaTeXmk"
-          ]
-      },
-      {
-          "name": "LuaLaTeXmk",
-          "tools": [
-              "LuaLaTeXmk"
-          ]
-      },
-      {
-          "name": "LaTeXmk-DVIPDFMx",
-          "tools": [
-              "LaTeXmk-DVIPDFMx"
-          ]
-      },
-      {
-          "name": "upLaTeXmk-DVIPDFMx",
-          "tools": [
-              "upLaTeXmk-DVIPDFMx"
-          ]
-      }
-  ],
-  "latex-workshop.latex.tools": [
-      {
-          "args": [
-              "-xelatex",
-              "-synctex=1",
-              "-shell-escape",
-              "-interaction=nonstopmode",
-              "-file-line-error",
-              "%DOC%"
-          ],
-          "command": "latexmk",
-          "name": "XeLaTeXmk"
-      },
-      {
-          "args": [
-              "-pdflatex",
-              "-synctex=1",
-              "-shell-escape",
-              "-interaction=nonstopmode",
-              "-file-line-error",
-              "%DOC%"
-          ],
-          "command": "latexmk",
-          "name": "pdfLaTeXmk"
-      },
-      {
-          "args": [
-              "-lualatex",
-              "-synctex=1",
-              "-shell-escape",
-              "-interaction=nonstopmode",
-              "-file-line-error",
-              "%DOC%"
-          ],
-          "command": "latexmk",
-          "name": "LuaLaTeXmk"
-      },
-      {
-          "args": [
-              "-e",
-              "$dvipdf='dvipdfmx %O -o %D %S'",
-              "-latex",
-              "-pdfdvi",
-              "-synctex=1",
-              "-shell-escape",
-              "-interaction=nonstopmode",
-              "-file-line-error",
-              "%DOC%"
-          ],
-          "command": "latexmk",
-          "name": "LaTeXmk-DVIPDFMx"
-      },
-      {
-          "args": [
-              "-e",
-              "$dvipdf='dvipdfmx %O -o %D %S'",
-              "-latex=uplatex",
-              "-pdfdvi",
-              "-synctex=1",
-              "-shell-escape",
-              "-interaction=nonstopmode",
-              "-file-line-error",
-              "%DOC%"
-          ],
-          "command": "latexmk",
-          "name": "upLaTeXmk-DVIPDFMx"
-      }
-  ],
-  "latex-workshop.view.pdf.viewer": "tab",
   "path-intellisense.absolutePathToWorkspace": false,
   "search.useGlobalIgnoreFiles": true,
   "lldb.suppressUpdateNotifications": true,
-  "workbench.colorTheme": "Nord",
   "gitlens.graph.minimap.enabled": false,
   "gitlens.graph.minimap.additionalTypes": [
     "localBranches"
-  ]
+  ],
+  "workbench.colorTheme": "Nord"
 }
