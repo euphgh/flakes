@@ -29,6 +29,14 @@
   "vim.normalModeKeyBindings": [
     {
       "before": [
+        "<C-w>"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
         "K"
       ],
       "commands": [
