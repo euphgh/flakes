@@ -1,6 +1,7 @@
 { lib, config, ... }@inputs: {
   imports = [
     ./alacritty
+    ./kitty
     ./nvim
     ./tmux
     ./vscode

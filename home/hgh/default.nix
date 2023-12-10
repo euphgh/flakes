@@ -9,6 +9,7 @@
     zsh.enable = true;
     vscode.enable = true;
     alacritty.enable = true;
+    kitty.enable = false;
     tex.enable = true;
   };
 
@@ -28,6 +29,7 @@
     jdk17_headless
 
     #gui tools
+    kitty
     gtkwave
     logseq
     drawio
@@ -40,7 +42,7 @@
 
   home = {
     sessionVariables = {
-      EDITOR = "code";
+      EDITOR = "nvim";
     };
   };
 }
