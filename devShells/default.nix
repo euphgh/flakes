@@ -10,18 +10,27 @@ rec {
   cpp-dev = nixpkgs.callPackage ./basic/cpp.nix { };
 
   # this is a combine show
-  riscv-dev = nixpkgs.mkShell {
-    packages = with nixpkgs; [
-      dtc # for spike compile
-      bc # for Linux kernel build
-      ncurses # for menuconfig
-    ];
-    inputsFrom = [
-      riscv-cross
-      cpp-dev
-    ];
-    shellHook = '' export ARCH=riscv '';
-  };
+  riscv-dev =
+    let
+      pyWithPacks = python-dev.override {
+        pyPkgs = (ps: with ps; [
+          pyyaml
+        ]);
+      };
+    in
+    nixpkgs.mkShell {
+      packages = with nixpkgs; [
+        dtc # for spike compile
+        bc # for Linux kernel build
+        ncurses # for menuconfig
+      ];
+      inputsFrom = [
+        riscv-cross
+        cpp-dev
+        pyWithPacks
+      ];
+      shellHook = '' export ARCH=riscv '';
+    };
   ysyx = nixpkgs.callPackage ./ysyx.nix {
     inherit riscv-dev python-dev;
     cpp-dev = cpp-dev.override {
