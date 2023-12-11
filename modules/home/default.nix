@@ -1,4 +1,4 @@
-{ lib, config, ... }@inputs: {
+{ lib, config, pkgs, ... }@inputs: {
   imports = [
     ./alacritty
     ./kitty
@@ -41,7 +41,7 @@
         grep = "grep --color=auto";
         cat = "bat --paging=never";
       };
-      package = with pkgs; [ bat ];
+      packages = with pkgs; [ bat ];
     };
   };
 }

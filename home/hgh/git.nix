@@ -18,7 +18,7 @@
         editor = "nvim";
       };
     };
-    alias = {
+    aliases = {
       st = "status -sb";
       cm = "commit -m";
       rv = "remote -v";
