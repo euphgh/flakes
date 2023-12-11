@@ -26,6 +26,7 @@
       d = "diff";
       gl = "config --global -l";
       se = "!git rev-list --all | xargs git grep -F";
+      rt = "!cd $(git rev-parse --show-toplevel)"; #root
       co = "checkout";
       ll = "log --oneline";
     };
