@@ -6,7 +6,6 @@ with lib; let cfg = config.euphgh.home.utilCli; in
     home = {
       packages = with pkgs; [
         appimage-run
-        bat
         btop
         fd
         ripgrep

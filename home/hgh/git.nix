@@ -18,5 +18,16 @@
         editor = "nvim";
       };
     };
+    alias = {
+      st = "status -sb";
+      cm = "commit -m";
+      rv = "remote -v";
+      last = "log -1 HEAD --stat";
+      d = "diff";
+      gl = "config --global -l";
+      se = "!git rev-list --all | xargs git grep -F";
+      co = "checkout";
+      ll = "log --oneline";
+    };
   };
 }
