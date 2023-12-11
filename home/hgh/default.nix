@@ -6,7 +6,7 @@
   euphgh.home = {
     nvim.enable = true;
     tmux.enable = true;
-    zsh.enable = true;
+    zsh.antidote = true;
     vscode.enable = true;
     alacritty.enable = true;
     kitty.enable = false;
