@@ -9,7 +9,7 @@
     zsh.antidote = true;
     vscode.enable = true;
     alacritty.enable = true;
-    kitty.enable = false;
+    kitty.enable = true;
     tex.enable = true;
   };
 
@@ -29,7 +29,6 @@
     jdk17_headless
 
     #gui tools
-    kitty
     gtkwave
     logseq
     drawio
