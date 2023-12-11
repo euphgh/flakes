@@ -25,6 +25,7 @@ let cfg = config.euphgh.home.zsh; in
         bindkey -M emacs '^N' history-substring-search-down
         bindkey '^[[A' history-substring-search-up
         bindkey '^[[B' history-substring-search-down
+        setopt NO_NOMATCH #for nixpkgs#hello grammer
 
         # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
         [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
