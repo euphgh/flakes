@@ -61,21 +61,6 @@ mkShell {
   ];
   NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
   shellHook = ''
-    export YSYX_HOME=/home/hgh/ysyx-workbench
-
-    export NEMU_HOME=$YSYX_HOME/nemu
     export NIX_CFLAGS_COMPILE="-isystem ${SDL2.dev}/include/SDL2 $NIX_CFLAGS_COMPILE"
-
-    export NPC_HOME=$YSYX_HOME/npc
-
-    # for abstract-machine
-    export AM_HOME=$YSYX_HOME/abstract-machine
-    export ARCH=riscv64-nemu
-
-    # for navy-apps
-    export NAVY_HOME=$YSYX_HOME/navy-apps
-    export ISA=riscv64
-
-    export NVBOARD_HOME=$YSYX_HOME/nvboard
   '';
 }
