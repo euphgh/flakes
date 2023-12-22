@@ -33,11 +33,15 @@
     # more config
     cachix
     home-manager
+
+    # age key
+    age
+    ssh-to-age
   ];
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
-    
+
   };
   programs.neovim = {
     enable = true;
@@ -60,4 +64,5 @@
     self.outputs.nixosModules.euphgh.home
   ];
   home-manager.extraSpecialArgs = builtins.removeAttrs inputs [ "pkgs" "config" "options" "lib" ];
+  environment.pathsToLink = [ "/share/zsh" ];
 }
