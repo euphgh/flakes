@@ -19,7 +19,7 @@ with lib; let cfg = config.euphgh.home.nvim; in
         fcitx-vim
         todo-comments-nvim
         hop-nvim
-        nvim-ts-rainbow
+        rainbow-delimiters-nvim
         nvim-autopairs
         luasnip
         friendly-snippets
