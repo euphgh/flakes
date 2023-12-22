@@ -8,7 +8,7 @@
       "*.swp"
       ".direnv/"
       ".cache/"
-      ".envrc"
+      ".vscode/"
     ];
     extraConfig = {
       init = {
