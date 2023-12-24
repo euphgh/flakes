@@ -62,8 +62,7 @@ in
           WorkingDirectory = "${cfg.workingDirectory}";
           ExecStartPre = "${pkgs.coreutils}/bin/ln -s ${pkgs.clash-geoip}/etc/clash/Country.mmdb ${cfg.configDirectory}";
           ExecStart = "${lib.getExe cfg.package}"
-            + " --help"
-            # + " -d ${cfg.configDirectory}"
+            + " -d ${cfg.configDirectory}"
             + " -f ${cfg.configPath}";
           Restart = "on-failure";
           CapabilityBoundingSet = [ "CAP_NET_ADMIN" "CAP_NET_RAW" "CAP_NET_BIND_SERVICE" ];
