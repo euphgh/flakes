@@ -1,14 +1,25 @@
-{ pkgs, lib, inputs, ... }:
+{ self, config, ... }:
 
 {
   imports = [
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
-    ../../modules/sys
   ];
+
   euphgh.sys = {
+    gui.enable = true;
     bluetoothHeadphones.enable = true;
-    nurClash.enable = true;
+    sops.enable = true;
+    clash = {
+      enable = true;
+      configPath = config.sops.templates."clash-config.yaml".path;
+    };
+    users = {
+      hgh = {
+        description = "Guanghui Hu";
+        homeConfig = [ self.utils.defaultHome ];
+      };
+    };
   };
 
   # Use the systemd-boot EFI boot loader.
@@ -21,86 +32,16 @@
     "/nix".options = [ "compress=zstd" "noatime" ];
   };
 
-  networking.hostName = "sayurin";
   networking.networkmanager.enable = true;
 
   time.timeZone = "Asia/Hong_Kong";
-  # Select internationalisation properties.
-  i18n = {
-    defaultLocale = "C.UTF-8";
-    extraLocaleSettings = {
-      LC_MESSAGES = "en_US.UTF-8";
-      LC_TIME = "C.UTF-8";
-      LC_CTYPE = "zh_CN.UTF-8";
-    };
-    inputMethod = {
-      enabled = "fcitx5";
-      fcitx5.addons = with pkgs; [
-        fcitx5-rime
-        fcitx5-chinese-addons
-      ];
-    };
-  };
-
-  # Enable the X11 windowing system.
-  services.xserver.enable = true;
-
-  # Enable the Plasma 5 Desktop Environment.
-  services.xserver.displayManager.sddm.enable = true;
-  services.xserver.desktopManager.plasma5.enable = true;
 
   services.printing.enable = true;
 
-  # Enable sound.
-  sound.enable = true;
-
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.hgh = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-  };
   security.sudo.wheelNeedsPassword = false;
 
-  environment.systemPackages = with pkgs; [
-    cacheix
-    stdenv.cc
-    man-pages
-    man-pages-posix
-  ];
   documentation.dev.enable = true;
-  programs.nix-ld = {
-    enable = true;
-    libraries = with pkgs; [
-      gtk3
-      libGL
-    ];
-  };
 
-  fonts = {
-    enableDefaultPackages = false;
-    packages = with pkgs; [
-      noto-fonts
-      noto-fonts-cjk-sans
-      noto-fonts-cjk-serif
-      noto-fonts-emoji
-      jetbrains-mono
-      fira-code
-      iosevka
-      corefonts
-      vistafonts
-      vistafonts-chs
-      (nerdfonts.override { fonts = [ "JetBrainsMono" "Noto" "FiraCode" "DroidSansMono" ]; })
-    ];
-    fontconfig.defaultFonts = pkgs.lib.mkForce {
-      serif = [ "Noto Serif CJK SC Bold" "Noto Serif" ];
-      sansSerif = [ "Noto Sans CJK SC Bold" "Noto Sans" ];
-      monospace = [ "JetBrains Mono" ];
-      emoji = [ "Noto Color Emoji" ];
-    };
-  };
   virtualisation = {
     podman = {
       enable = true;
