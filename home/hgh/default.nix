@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ pkgs, self, ... }:
 {
   imports = [ ./git.nix ];
 
@@ -25,12 +25,12 @@
     # util cli
     neofetch
     sshfs
-    mill
+    self.packages.${system}.millw
     jdk17_headless
 
     #gui tools
     gtkwave
-    logseq
+    # logseq
     drawio
     musescore
 

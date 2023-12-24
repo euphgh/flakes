@@ -23,6 +23,7 @@
     nixosModules.euphgh.home = import ./modules/home;
 
     devShells = with utils; foreachSysInList defaultSysList (p: import devShellsDir p);
+    packages = with utils; foreachSysInList defaultSysList (p: import packagesDir p);
 
     templates = rec {
       shell = {

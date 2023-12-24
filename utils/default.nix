@@ -16,6 +16,7 @@ rec {
   #path info
   rootPath = ./..;
   devShellsDir = rootPath + /devShells;
+  packagesDir = rootPath + /packages;
   homeConfigsDir = rootPath + /home;
   nixosConfigsDir = rootPath + /nixos;
   homeModulesDir = rootPath + /modules/home;
