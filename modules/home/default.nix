@@ -40,6 +40,7 @@
         "...." = "cd ../../..";
         grep = "grep --color=auto";
         cat = "bat --paging=never";
+        mill = "millw";
       };
       packages = with pkgs; [ bat ];
     };

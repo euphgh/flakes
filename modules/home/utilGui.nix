@@ -1,15 +1,15 @@
 { pkgs, lib, config, ... }:
-with lib; let cfg = config.euphgh.home.utilGui; in
+let cfg = config.euphgh.home.utilGui; in
 {
-  options.euphgh.home.utilGui.enable = mkEnableOption "common gui tools";
-  config = mkIf cfg.enable {
-    home = {
-      packages = with pkgs; [
-        chromium
-        config.nur.repos.linyinfeng.wemeet
-        flameshot
-        qq
-      ];
+  options.euphgh.home.utilGui.enable = lib.mkEnableOption "common gui tools";
+  config = lib.mkIf cfg.enable {
+      home = {
+        packages = with pkgs; [
+          chromium
+          config.nur.repos.linyinfeng.wemeet
+          flameshot
+          qq
+        ];
+      };
     };
-  };
 }

@@ -7,6 +7,7 @@ with lib; let cfg = config.euphgh.home.utilCli; in
       packages = with pkgs; [
         appimage-run
         btop
+        dig
         fd
         ripgrep
         sops
