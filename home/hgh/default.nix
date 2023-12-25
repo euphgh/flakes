@@ -1,4 +1,9 @@
-{ pkgs, self, ... }:
+{ pkgs, self, system, ... }:
+let
+  millw-alias-mill = self.packages.${system}.millw.override {
+    alias = "mill";
+  };
+in
 {
   imports = [ ./git.nix ];
 
@@ -25,7 +30,7 @@
     # util cli
     neofetch
     sshfs
-    self.packages.${system}.millw
+    millw-alias-mill
     jdk17_headless
 
     #gui tools

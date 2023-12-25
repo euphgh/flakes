@@ -1,6 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
+, alias ? "millw"
 }:
 
 stdenv.mkDerivation rec {
@@ -17,7 +18,7 @@ stdenv.mkDerivation rec {
   installPhase = ''
     runHook preInstall
     mkdir -p $out/bin
-    install $src/millw $out/bin/$pname
+    install $src/millw $out/bin/${alias}
     runHook postInstall
   '';
   meta = with lib; {
@@ -25,6 +26,6 @@ stdenv.mkDerivation rec {
     homepage = "https://github.com/lefou/millw";
     license = licenses.asl20;
     platforms = platforms.linux;
-    mainProgram = "millw";
+    mainProgram = alias;
   };
 }
