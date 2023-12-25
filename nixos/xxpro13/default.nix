@@ -17,7 +17,8 @@
     users = {
       hgh = {
         description = "Guanghui Hu";
-        homeConfig = [ self.utils.defaultHome ];
+        # if use default home, home-manager switch will be reset when reboot
+        # homeConfig = [ self.utils.defaultHome ];
       };
     };
   };
