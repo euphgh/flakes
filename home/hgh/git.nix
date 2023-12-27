@@ -29,6 +29,7 @@
       rt = "!cd $(git rev-parse --show-toplevel)"; #root
       co = "checkout";
       ll = "log --oneline";
+      ig = "!echo \"$@\" >> .git/info/exclude";
     };
   };
 }
