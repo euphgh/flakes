@@ -6,7 +6,7 @@
   "editor.fontFamily": "JetBrainsMono Nerd Font",
   "editor.formatOnSaveMode": "modifications",
   "editor.tabCompletion": "off",
-  "terminal.integrated.fontFamily": "JetBrainsMono Nerd Font",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
   "security.workspace.trust.enabled": false,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
@@ -95,7 +95,6 @@
       }
     }
   },
-  "vim.foldfix": true,
   "typescript.inlayHints.enumMemberValues.enabled": true,
   "githubPullRequests.fileListLayout": "flat",
   "editor.unicodeHighlight.allowedLocales": {
@@ -110,7 +109,6 @@
   "python.analysis.typeCheckingMode": "strict",
   "python.analysis.completeFunctionParens": true,
   "python.analysis.autoFormatStrings": true,
-  "window.zoomLevel": -1,
   "path-intellisense.absolutePathToWorkspace": false,
   "search.useGlobalIgnoreFiles": true,
   "lldb.suppressUpdateNotifications": true,
@@ -118,5 +116,7 @@
   "gitlens.graph.minimap.additionalTypes": [
     "localBranches"
   ],
-  "workbench.colorTheme": "Nord"
+  "workbench.colorTheme": "Nord",
+  "window.zoomLevel": -1,
+  "vim.foldfix": true
 }
