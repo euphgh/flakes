@@ -13,8 +13,6 @@ in
     tmux.enable = true;
     zsh.antidote = true;
     vscode.enable = true;
-    alacritty.enable = true;
-    kitty.enable = true;
     tex.enable = true;
   };
 
