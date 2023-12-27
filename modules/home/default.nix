@@ -2,6 +2,7 @@
   imports = [
     ./alacritty
     ./kitty
+    ./contour
     ./nvim
     ./tmux
     ./vscode
