@@ -95,7 +95,7 @@ rec {
             self.outputs.nixosModules.euphgh.home
             ({ ... }: {
               config.euphgh.home.specialArgs = {
-                  username = name;
+                username = name;
               };
             })
           ] ++ value.modules;
