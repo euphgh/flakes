@@ -2,8 +2,6 @@
 , mkShell
 , stdenv
   # other devShell
-, cpp-dev
-, python-dev
 , riscv-dev
   # hardware tools
 , verilator
@@ -18,12 +16,14 @@
   # nslide depandency
 , imagemagick
   # nemu menuconfig build depandency
-, ncurses
 , bison
 , flex
   # nemu build depandency
 , readline
 , llvmPackages_15
+  # chisel compile
+, jdk17_headless
+, mill
   # iSTA runtime depancency
 , libgccjit # for iSTA
 , libunwind # for iSTA
@@ -42,22 +42,20 @@ mkShell {
     verilator
     readline
     valgrind
-    ncurses
     bison
     flex
     llvmPackages_15.libllvm
+    jdk17_headless
+    mill
   ];
   inputsFrom = [
-    cpp-dev
     riscv-dev
-    python-dev
   ];
   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
     libgccjit # for iSTA
     libunwind # for iSTA
     stdenv.cc.cc
     zlib
-    ncurses
   ];
   NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";
   shellHook = ''

@@ -1,4 +1,4 @@
-{ nixpkgs, ... }@inputs:
+{ nixpkgs, self, system, ... }@inputs:
 rec {
   # without 3rd python packages
   python-dev = nixpkgs.callPackage ./basic/python.nix {
@@ -10,33 +10,21 @@ rec {
   cpp-dev = nixpkgs.callPackage ./basic/cpp.nix { };
 
   # this is a combine show
-  riscv-dev =
-    let
-      pyWithPacks = python-dev.override {
-        pyPkgs = (ps: with ps; [
-          pyyaml
-        ]);
-      };
-    in
-    nixpkgs.mkShell {
-      packages = with nixpkgs; [
-        dtc # for spike compile
-        bc # for Linux kernel build
-        ncurses # for menuconfig
-      ];
-      inputsFrom = [
-        riscv-cross
-        cpp-dev
-        pyWithPacks
-      ];
-      shellHook = '' export ARCH=riscv '';
-    };
+  riscv-dev = nixpkgs.callPackage ./riscv-dev.nix {
+    inherit python-dev cpp-dev riscv-cross;
+  };
+
   ysyx = nixpkgs.callPackage ./ysyx.nix {
-    inherit riscv-dev python-dev;
-    cpp-dev = cpp-dev.override {
-      clang-tools = nixpkgs.clang-tools_15;
-      clang = nixpkgs.clang_15;
+    riscv-dev = riscv-dev.override {
+      cpp-dev = cpp-dev.override {
+        clang-tools = nixpkgs.clang-tools_15;
+        clang = nixpkgs.clang_15;
+      };
     };
+    mill = self.packages.${system}.millw.override {
+      alias = "mill";
+    };
+    verilator = self.packages.${system}.verilator_5016;
   };
   self-dev =
     let

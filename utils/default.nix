@@ -35,7 +35,13 @@ rec {
 
   # make devShell or package
   foreachSysInList = sys: f: nixpkgs.lib.genAttrs (sys) (system:
-    let p = { nixpkgs = nixpkgs.legacyPackages.${system}; }; in f p);
+    let
+      p = {
+        nixpkgs = nixpkgs.legacyPackages.${system};
+        inherit system self;
+      };
+    in
+    f p);
 
   mapIfExist = ele: f: list:
     let
@@ -86,7 +92,7 @@ rec {
     let
       makeHome = name: value:
         let
-          specialArgs = builtins.removeAttrs value [ "modules" "append" ];
+          specialArgs = (defaultParamSet // { system = builtins.currentSystem; }) // value;
         in
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${specialArgs.system};
