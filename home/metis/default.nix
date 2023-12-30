@@ -20,8 +20,5 @@
   home.packages = with pkgs; [
     # util cli
     neofetch
-    sshfs
-    millw-alias-mill
-    jdk17_headless
   ];
 }
