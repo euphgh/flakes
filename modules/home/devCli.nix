@@ -5,6 +5,7 @@ with lib; let cfg = config.euphgh.home.devCli; in
   config = mkIf cfg.enable {
     home = {
       packages = with pkgs; [
+        linuxKernel.packages.linux_6_1.perf
         file
         gnumake
         gdb

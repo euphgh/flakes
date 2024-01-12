@@ -26,7 +26,7 @@
     nixpkgs.config.allowUnfree = true;
     home = with lib; rec {
       stateVersion = mkDefault inputs.stateVersion;
-      username = mkDefault config.euphgh.home.specialArgs.username;
+      username = config.euphgh.home.specialArgs.username;
       homeDirectory = mkDefault "/home/${username}";
       shellAliases = {
         ls = "ls --color -h";

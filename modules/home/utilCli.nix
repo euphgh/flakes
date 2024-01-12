@@ -5,7 +5,6 @@ with lib; let cfg = config.euphgh.home.utilCli; in
   config = mkIf cfg.enable {
     home = {
       packages = with pkgs; [
-        appimage-run
         btop
         dig
         fd
