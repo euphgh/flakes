@@ -8,9 +8,5 @@ in
     virtualisation.docker.enable = true;
     users.users.hgh.extraGroups = [ "docker" ];
     virtualisation.docker.storageDriver = "btrfs";
-    virtualisation.docker.rootless = {
-      enable = true;
-      setSocketVariable = true;
-    };
   };
 }
