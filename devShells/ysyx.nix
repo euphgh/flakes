@@ -19,6 +19,7 @@
 , bison
 , flex
   # nemu build depandency
+, ncurses
 , readline
 , llvmPackages_15
   # chisel compile
@@ -35,6 +36,7 @@ mkShell {
     SDL
     SDL_image
     # for nemu run
+    ncurses
     SDL2
     SDL2_image
     imagemagick # for nslide
