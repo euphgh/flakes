@@ -1,4 +1,4 @@
-{ pkgs, self, system, ... }:
+{ pkgs, self, system, lib, ... }:
 let
   millw-alias-mill = self.packages.${system}.millw.override {
     alias = "mill";
@@ -6,6 +6,13 @@ let
 in
 {
   imports = [ ./git.nix ];
+
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+      permittedInsecurePackages = pkgs.lib.optional (pkgs.obsidian.version == "1.5.3") "electron-25.9.0";
+    };
+  };
 
   # configurable app
   euphgh.home = {
@@ -33,7 +40,8 @@ in
 
     #gui tools
     gtkwave
-    # logseq
+    logseq
+    obsidian
     drawio
     musescore
 
