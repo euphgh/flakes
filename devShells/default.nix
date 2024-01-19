@@ -32,6 +32,7 @@ rec {
       python-pkgs = python-dev.override {
         pyPkgs = (ps: with ps; [
           psutil
+          pyyaml
         ]);
       };
     in
