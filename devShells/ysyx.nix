@@ -19,7 +19,6 @@
 , bison
 , flex
   # nemu build depandency
-, ncurses
 , readline
 , llvmPackages_15
   # chisel compile
@@ -29,6 +28,7 @@
 , libgccjit # for iSTA
 , libunwind # for iSTA
 , zlib
+, python-dev
 }:
 mkShell {
   packages = [
@@ -36,7 +36,6 @@ mkShell {
     SDL
     SDL_image
     # for nemu run
-    ncurses
     SDL2
     SDL2_image
     imagemagick # for nslide
@@ -52,6 +51,7 @@ mkShell {
   ];
   inputsFrom = [
     riscv-dev
+    python-dev
   ];
   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
     libgccjit # for iSTA

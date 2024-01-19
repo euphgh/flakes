@@ -11,26 +11,43 @@ rec {
 
   # this is a combine show
   riscv-dev = nixpkgs.callPackage ./riscv-dev.nix {
-    inherit python-dev cpp-dev riscv-cross;
+    inherit cpp-dev riscv-cross;
   };
 
-  ysyx = nixpkgs.callPackage ./ysyx.nix {
-    riscv-dev = riscv-dev.override {
-      cpp-dev = cpp-dev.override {
-        clang-tools = nixpkgs.clang-tools_15;
-        clang = nixpkgs.clang_15;
-      };
-      python-dev = python-dev.override {
+  py-test =
+    let
+      python-pkgs = python-dev.override {
         pyPkgs = (ps: with ps; [
-          psutils
+          psutil
+          numpy
         ]);
       };
+    in
+    riscv-dev.override {
+      python-dev = python-pkgs;
     };
-    mill = self.packages.${system}.millw.override {
-      alias = "mill";
+
+  ysyx =
+    let
+      python-pkgs = python-dev.override {
+        pyPkgs = (ps: with ps; [
+          psutil
+        ]);
+      };
+    in
+    nixpkgs.callPackage ./ysyx.nix {
+      riscv-dev = riscv-dev.override {
+        cpp-dev = cpp-dev.override {
+          clang-tools = nixpkgs.clang-tools_15;
+          clang = nixpkgs.clang_15;
+        };
+      };
+      mill = self.packages.${system}.millw.override {
+        alias = "mill";
+      };
+      verilator = self.packages.${system}.verilator_5016;
+      python-dev = python-pkgs;
     };
-    verilator = self.packages.${system}.verilator_5016;
-  };
   self-dev =
     let
       pyWithPacks = python-dev.override {
