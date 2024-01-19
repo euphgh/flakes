@@ -20,6 +20,11 @@ rec {
         clang-tools = nixpkgs.clang-tools_15;
         clang = nixpkgs.clang_15;
       };
+      python-dev = python-dev.override {
+        pyPkgs = (ps: with ps; [
+          psutils
+        ]);
+      };
     };
     mill = self.packages.${system}.millw.override {
       alias = "mill";
