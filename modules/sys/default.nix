@@ -9,6 +9,7 @@
     ./user.nix
     ./sops.nix
     ./docker.nix
+    ./nix-ld.nix
     inputs.home-manager.nixosModules.home-manager
     inputs.sops-nix.nixosModules.sops
   ];
