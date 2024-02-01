@@ -1,7 +1,7 @@
 { config, pkgs, lib, self, ... }@inputs:
 {
   euphgh.sys = {
-    gui.enable = false;
+    gui.enable = true;
     sops.enable = true;
     clash = {
       enable = true;
