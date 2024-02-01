@@ -1,8 +1,10 @@
 { pkgs, self, system, lib, ... }:
 let
-  millw-alias-mill = self.packages.${system}.millw.override {
-    alias = "mill";
+  millw-alias-mill = self.packages.${system}.millw.override { alias = "mill"; };
+  vlc-old = pkgs.libsForQt5.qt5.callPackage ./vlc-old.nix {
+    # inherit(pkgs.qt6) qtbase;
   };
+  # vlc-old = self.packages.${system}.vlc-old;
 in
 {
   imports = [ ./git.nix ];
@@ -47,7 +49,7 @@ in
 
     # vedio
     qbittorrent
-    vlc
+    vlc-old
   ];
 
   home = {
