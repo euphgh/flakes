@@ -101,7 +101,7 @@
     "zh-hans": true
   },
   "workbench.iconTheme": "material-icon-theme",
-  "metals.serverVersion": "1.1.0",
+  "metals.serverVersion": "1.2.0",
   "python.formatting.provider": "black",
   "python.analysis.inlayHints.variableTypes": true,
   "python.analysis.inlayHints.pytestParameters": true,
