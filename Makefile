@@ -1,7 +1,10 @@
-impure:
-	ifeq ($(strip $(ATTR)),)
+ifeq ($(MAKECMDGOALS), impure)
+ifeq ($(strip $(ATTR)),)
 	$(error not define ATTR)
-	endif
+endif
+endif
+
+impure:
 	python ./scripts/main.py home $(ATTR)
 
 vm:
