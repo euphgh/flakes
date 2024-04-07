@@ -101,7 +101,6 @@
     "zh-hans": true
   },
   "workbench.iconTheme": "material-icon-theme",
-  "metals.serverVersion": "1.2.0",
   "python.formatting.provider": "black",
   "python.analysis.inlayHints.variableTypes": true,
   "python.analysis.inlayHints.pytestParameters": true,
@@ -116,7 +115,12 @@
   "gitlens.graph.minimap.additionalTypes": [
     "localBranches"
   ],
-  "workbench.colorTheme": "Nord",
   "window.zoomLevel": -1,
-  "vim.foldfix": true
+  "vim.foldfix": true,
+  "verilog.linting.linter": "verilator",
+  "workbench.colorTheme": "Nord",
+  "git.openRepositoryInParentFolders": "never",
+  "[verilog]": {
+    "editor.defaultFormatter": "chipsalliance.verible"
+  }
 }
