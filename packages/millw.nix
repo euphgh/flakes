@@ -1,7 +1,7 @@
 { lib
 , stdenv
 , fetchFromGitHub
-, alias ? "millw"
+, alias ? "mill"
 }:
 
 stdenv.mkDerivation rec {
@@ -24,7 +24,6 @@ stdenv.mkDerivation rec {
   meta = with lib; {
     description = "Mill Wrapper Script";
     homepage = "https://github.com/lefou/millw";
-    license = licenses.asl20;
     platforms = platforms.linux;
     mainProgram = alias;
   };
