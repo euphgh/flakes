@@ -21,6 +21,9 @@
         # if use default home, home-manager switch will be reset when reboot
         # homeConfig = [ self.utils.defaultHome ];
       };
+      hypr = {
+        description = "Hyprland test user";
+      };
     };
   };
 
@@ -43,6 +46,8 @@
   security.sudo.wheelNeedsPassword = false;
 
   documentation.dev.enable = true;
+
+  services.openssh.settings.X11Forwarding = true;
 
   virtualisation = {
     podman = {
