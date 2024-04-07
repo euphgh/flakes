@@ -20,10 +20,11 @@
 , flex
   # nemu build depandency
 , readline
-, llvmPackages_15
+, llvmPackages
   # chisel compile
 , jdk17_headless
 , mill
+, bloop
   # iSTA runtime depancency
 , libgccjit # for iSTA
 , libunwind # for iSTA
@@ -45,9 +46,10 @@ mkShell {
     valgrind
     bison
     flex
-    llvmPackages_15.libllvm
+    llvmPackages.libllvm
     jdk17_headless
     mill
+    bloop
   ];
   inputsFrom = [
     riscv-dev
@@ -56,7 +58,6 @@ mkShell {
   NIX_LD_LIBRARY_PATH = lib.makeLibraryPath [
     libgccjit # for iSTA
     libunwind # for iSTA
-    stdenv.cc.cc
     zlib
   ];
   NIX_LD = lib.fileContents "${stdenv.cc}/nix-support/dynamic-linker";

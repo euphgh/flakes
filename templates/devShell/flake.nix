@@ -13,32 +13,34 @@
         defaultSysList = [ "aarch64-darwin" "aarch64-linux" "x86_64-darwin" "x86_64-linux" ];
 
         # make devShell or package
-        foreachSysInList = sys: f: nixpkgs.lib.genAttrs (sys) (system:
-          f {
-            nixpkgs = nixpkgs.legacyPackages.${system};
-            euphghShells = inputs.euphgh.devShells.${system};
-          });
+        foreachSysInList = sys: f: nixpkgs.lib.genAttrs (sys) (system: f {
+          nixpkgs = nixpkgs.legacyPackages.${system};
+          devShells = inputs.euphgh.devShells.${system};
+          packages = inputs.euphgh.packages.${system};
+        });
       in
-      foreachSysInList defaultSysList ({ euphghShells, nixpkgs, ... }: {
+      foreachSysInList defaultSysList ({ devShells, nixpkgs, packages, ... }: {
         ##################################################
         ######      only need modify at here        ######
         ##################################################
 
-        # 1. only use devShell defined in euphgh flakes
-        foo = euphghShells.cpp-dev;
+        # 1. use devShell defined in euphgh flakes
+        inherit (devShells) cpp-dev python-dev riscv-dev ysyx;
 
-        # 2. use devShell defined in euphgh flakes to create new devShell
-        default = nixpkgs.mkShell {
+        # 2. use euphgh's devShell to create new devShell
+        general = nixpkgs.mkShell {
           packages = with nixpkgs; [
-            dtc # for spike compile
-            bc # for Linux kernel build
-            ncurses # for menuconfig
+            zlib
+            autoconf
+            perl
+            flex
+            bison
+            python3
+            help2man
+            cmakeWithGui
+            perl538Packages.DevelTrace
           ];
-          inputsFrom = [
-            euphghShells.riscv-cross
-            euphghShells.cpp-dev
-          ];
-          shellHook = '' export ARCH=riscv '';
+          inputsFrom = [ devShells.cpp-dev ];
         };
       });
   };

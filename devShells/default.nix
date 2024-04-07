@@ -1,9 +1,12 @@
-{ nixpkgs, self, system, ... }@inputs:
-rec {
+{ nixpkgs, self, system, ... }:
+let
+  packages = self.packages.${system};
+in
+rec{
   # without 3rd python packages
   python-dev = nixpkgs.callPackage ./basic/python.nix {
     # you can add more python packages like this
-    # pyPkgs = ps: with ps; [ numpy ];
+    pyPkgs = ps: with ps; [ numpy ];
   };
 
   riscv-cross = nixpkgs.callPackage ./basic/riscv-cross.nix { };
@@ -13,19 +16,6 @@ rec {
   riscv-dev = nixpkgs.callPackage ./riscv-dev.nix {
     inherit cpp-dev riscv-cross;
   };
-
-  py-test =
-    let
-      python-pkgs = python-dev.override {
-        pyPkgs = (ps: with ps; [
-          psutil
-          numpy
-        ]);
-      };
-    in
-    riscv-dev.override {
-      python-dev = python-pkgs;
-    };
 
   ysyx =
     let
@@ -37,21 +27,16 @@ rec {
       };
     in
     nixpkgs.callPackage ./ysyx.nix {
-      riscv-dev = riscv-dev.override {
-        cpp-dev = cpp-dev.override {
-          clang-tools = nixpkgs.clang-tools_15;
-          clang = nixpkgs.clang_15;
-        };
-      };
-      mill = self.packages.${system}.millw.override {
-        alias = "mill";
-      };
-      verilator = self.packages.${system}.verilator_5016;
+      inherit (packages) mill;
+      verilator = packages.verilator.override { version = "5.018"; };
+      bloop = packages.bloop.override { version = "1.5.15"; };
       python-dev = python-pkgs;
+      inherit riscv-dev;
     };
+
   self-dev =
     let
-      pyWithPacks = python-dev.override {
+      python-pkgs = python-dev.override {
         pyPkgs = (ps: with ps; [
           xdg
           (
@@ -70,8 +55,9 @@ rec {
     in
     nixpkgs.mkShell {
       packages = with nixpkgs; [
+        nixpkgs-fmt
         nixd
       ];
-      inputsFrom = [ pyWithPacks ];
+      inputsFrom = [ python-pkgs ];
     };
 }
