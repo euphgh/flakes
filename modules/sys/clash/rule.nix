@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  providers = [ "gatern" "boomsse" ];
+  providers = [ "boomsse" "renzhe" ];
 
   mkProvider = name: {
     type = "http";

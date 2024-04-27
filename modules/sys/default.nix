@@ -1,6 +1,5 @@
 { config, pkgs, stateVersion, hostname, system, ... }@inputs: {
   imports = [
-    ./nurClash.nix
     ./clash
     ./clash/rule.nix
     ./bluetooth.nix
