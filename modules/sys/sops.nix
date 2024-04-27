@@ -8,9 +8,7 @@ in
   config = mkIf cfg.enable {
     sops.defaultSopsFile = rootPath + /secrets/general.yaml;
     sops.defaultSopsFormat = "yaml";
-    sops.age.keyFile = /home/hgh/.config/sops/age/keys.txt;
-    # sops.age.sshKeyPaths = [ "/home/hgh/.ssh/id_ed25519" ];
-    # sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
-    # sops.age.generateKey = true;
+    sops.age.sshKeyPaths = [ "/etc/ssh/ssh_host_ed25519_key" ];
+    environment.variables.SOPS_AGE_KEY_FILE = "/run/secrets.d/age-keys.txt";
   };
 }
