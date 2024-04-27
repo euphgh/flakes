@@ -122,5 +122,9 @@
   "git.openRepositoryInParentFolders": "never",
   "[verilog]": {
     "editor.defaultFormatter": "chipsalliance.verible"
-  }
+  },
+  "hexeditor.columnWidth": 16,
+  "hexeditor.showDecodedText": true,
+  "hexeditor.defaultEndianness": "little",
+  "hexeditor.inspectorType": "aside"
 }
