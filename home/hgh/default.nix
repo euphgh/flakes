@@ -1,7 +1,6 @@
 { pkgs, self, system, lib, ... }:
 let
-  millw-alias-mill = self.packages.${system}.millw.override { alias = "mill"; };
-  # vlc-old = self.packages.${system}.vlc-old;
+  millw = self.packages.${system}.mill;
 in
 {
   imports = [ ./git.nix ];
@@ -38,7 +37,7 @@ in
     # util cli
     neofetch
     sshfs
-    millw-alias-mill
+    millw
     jdk17_headless
 
     #gui tools
