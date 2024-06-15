@@ -10,6 +10,7 @@ with lib; let cfg = config.euphgh.home.utilCli; in
         fd
         ripgrep
         sops
+        wget
         trashy
         xclip
       ];

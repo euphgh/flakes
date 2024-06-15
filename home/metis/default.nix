@@ -1,6 +1,6 @@
 { self, lib, pkgs, system, ... }:
 let
-  mill-alias = self.packages.${system}.millw.override { alias = "mill"; };
+  mill-alias = self.packages.${system}.mill.override { alias = "mill"; };
 in
 {
   home.username = lib.mkForce "hgh";
@@ -24,6 +24,7 @@ in
   home.packages = with pkgs; [
     # util cli
     neofetch
+    podman
     jdk17_headless
     mill-alias
     sbt
