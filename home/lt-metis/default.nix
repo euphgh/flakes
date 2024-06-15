@@ -1,0 +1,33 @@
+{ self, lib, pkgs, system, ... }:
+let
+  mill-alias = self.packages.${system}.mill.override { alias = "mill"; };
+in
+{
+  home.username = lib.mkForce "lt";
+  home.homeDirectory = lib.mkForce /home/lt;
+  imports = [ ../hgh/git.nix ];
+
+  # configurable app
+  euphgh.home = {
+    nvim.enable = true;
+    tmux.enable = true;
+    zsh.antidote = true;
+  };
+
+  # unconfigurable app
+  euphgh.home = {
+    devCli.enable = true;
+    utilCli.enable = true;
+  };
+
+  # more unconfigurable app
+  home.packages = with pkgs; [
+    # util cli
+    neofetch
+    podman
+    jdk17_headless
+    mill-alias
+    sbt
+    git
+  ];
+}
