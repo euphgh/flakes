@@ -1,6 +1,6 @@
 { lib, config, ... }:
 let
-  providers = [ "boomsse" "renzhe" ];
+  providers = [ "bywave" ];
 
   mkProvider = name: {
     type = "http";
@@ -41,7 +41,11 @@ let
 in
 {
   sops.secrets = lib.attrsets.mergeAttrsList (map mkSecret providers);
-  sops.templates."clash-config.yaml".content = builtins.readFile ./rule.yaml + ''
+  sops.templates."clash-config.yaml".content = builtins.readFile ./rule.yaml + 
+  ''
+
+    # add new line
+
     proxy-groups: ${builtins.toJSON proxyGroups}
     proxy-providers: ${builtins.toJSON proxyProviders}
   '';
