@@ -49,7 +49,7 @@ mkShell {
     llvmPackages.libllvm
     jdk17_headless
     mill
-    bloop
+    # bloop
   ];
   inputsFrom = [
     riscv-dev

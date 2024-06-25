@@ -3,8 +3,8 @@ let
   mill-alias = self.packages.${system}.mill.override { alias = "mill"; };
 in
 {
-  home.username = lib.mkForce "hgh";
-  home.homeDirectory = lib.mkForce /home/hgh;
+  home.username = lib.mkForce "lt";
+  home.homeDirectory = lib.mkForce /home/lt;
   imports = [ ../hgh/git.nix ];
 
   # configurable app
@@ -28,5 +28,6 @@ in
     jdk17_headless
     mill-alias
     sbt
+    git
   ];
 }
