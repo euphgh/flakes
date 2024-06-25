@@ -16,6 +16,7 @@ in
   config = mkIf cfg.enable {
 
     programs.hyprland.enable = true;
+    programs.browserpass.enable = true;
 
     environment.systemPackages = with pkgs; [
       kitty

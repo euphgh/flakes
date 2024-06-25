@@ -35,7 +35,9 @@
     cachix
     home-manager
 
-    # age key
+    # password
+    gnupg
+    pass
     age
     ssh-to-age
   ];
