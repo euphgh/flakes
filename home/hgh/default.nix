@@ -41,6 +41,7 @@ in
     jdk17_headless
 
     #gui tools
+    simplescreenrecorder
     gtkwave
     obsidian
     drawio
