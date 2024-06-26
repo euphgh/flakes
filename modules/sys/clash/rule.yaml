@@ -11,7 +11,7 @@ experimental:
   ignore-resolve-fail: true
 
 tun:
-  enable: true
+  enable: false
   stack: system
   auto-route: true
   auto-detect-interface: true
