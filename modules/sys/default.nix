@@ -36,11 +36,17 @@
     home-manager
 
     # password
-    gnupg
     pass
     age
     ssh-to-age
   ];
+
+  services.pcscd.enable = true;
+  programs.gnupg.agent = {
+     enable = true;
+     enableSSHSupport = true;
+  };
+
   services.openssh = {
     enable = true;
     settings.PasswordAuthentication = true;
@@ -56,7 +62,8 @@
 
   networking.hostName = hostname;
   networking.firewall = {
-    enable = false;
+    enable = true;
+    allowedTCPPorts = [ 22 8899 ]; 
   };
 
   #home-manaager system level config

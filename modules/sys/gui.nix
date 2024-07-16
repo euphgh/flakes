@@ -20,6 +20,7 @@ in
 
     environment.systemPackages = with pkgs; [
       kitty
+      pinentry-all
     ];
 
     i18n = {
