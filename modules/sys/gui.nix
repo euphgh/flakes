@@ -141,9 +141,6 @@ in
     services.displayManager.sddm.enable = true;
     services.xserver.desktopManager.plasma5.enable = true;
 
-    # Enable sound with pipewire.
-    sound.enable = true;
-
     fonts = {
       enableDefaultPackages = false;
       fontDir.enable = true;

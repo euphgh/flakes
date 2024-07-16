@@ -20,7 +20,7 @@
       warn-dirty = false;
       max-jobs = lib.mkDefault 8;
     };
-    package = pkgs.nixUnstable;
+    package = pkgs.nixVersions.latest;
     gc = {
       automatic = true;
       dates = "weekly";
