@@ -12,7 +12,7 @@ experimental:
 
 tun:
   enable: false
-  stack: system
+  stack: gvisor
   auto-route: true
   auto-detect-interface: true
   dns-hijack:
