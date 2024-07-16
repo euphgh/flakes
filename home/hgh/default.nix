@@ -46,9 +46,12 @@ in
     obsidian
     drawio
     qq
+    feishu
 
     dunst
     mako
+    libnotify
+    notify-desktop
 
     # vedio
     qbittorrent
