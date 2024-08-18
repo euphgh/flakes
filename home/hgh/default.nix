@@ -47,11 +47,18 @@ in
     drawio
     qq
     feishu
+    nixd
+    inetutils
+    netcat-gnu
 
     dunst
     mako
     libnotify
     notify-desktop
+    qemu_kvm
+    cloud-init
+    cloud-utils
+    sshping
 
     # vedio
     qbittorrent
