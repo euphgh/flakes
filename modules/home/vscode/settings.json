@@ -84,10 +84,10 @@
     "**/.ammonite": true
   },
   "git.confirmSync": false,
-  "nix.serverPath": "nil",
+  "nix.serverPath": "nixd",
   "nix.enableLanguageServer": true,
   "nix.serverSettings": {
-    "nil": {
+    "nixd": {
       "formatting": {
         "command": [
           "nixpkgs-fmt"
@@ -121,11 +121,19 @@
   "workbench.colorTheme": "Nord",
   "git.openRepositoryInParentFolders": "never",
   "[verilog]": {
-    "editor.defaultFormatter": "chipsalliance.verible"
+    "editor.defaultFormatter": "mshr-h.veriloghdl"
   },
+  "verilog.formatting.verilogHDL.formatter": "verible-verilog-format",
   "hexeditor.columnWidth": 16,
   "hexeditor.showDecodedText": true,
   "hexeditor.defaultEndianness": "little",
   "hexeditor.inspectorType": "aside",
-  "xml.format.enabled": false
+  "hediet.vscode-drawio.theme": "min",
+  "cmake.configureOnOpen": true,
+  "cmake.options.statusBarVisibility": "icon",
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ]
 }
