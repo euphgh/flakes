@@ -13,6 +13,8 @@ with lib; let cfg = config.euphgh.home.utilCli; in
         wget
         trashy
         xclip
+        zip
+        unzip
       ];
     };
   };
