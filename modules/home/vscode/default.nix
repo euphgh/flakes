@@ -26,6 +26,7 @@ with lib; let cfg = config.euphgh.home.vscode; in
         # cpp
         llvm-vs-code-extensions.vscode-clangd
         vadimcn.vscode-lldb
+        ms-vscode.cmake-tools
         # nix
         bbenoist.nix
         jnoortheen.nix-ide
@@ -40,7 +41,9 @@ with lib; let cfg = config.euphgh.home.vscode; in
         ms-python.python
         ms-python.vscode-pylance
         # slides
-        antfu.slidev
+        hediet.vscode-drawio
+        redhat.vscode-xml
+        mshr-h.veriloghdl
       ];
     };
   };
