@@ -2,7 +2,7 @@
   programs.git = {
     enable = true;
     userName = "Guanghui Hu";
-    userEmail = "120L052208@stu.hit.edu.cn";
+    userEmail = "hugh2024@shanghaitech.edu.cn";
     ignores = [
       "*~"
       "*.swp"
