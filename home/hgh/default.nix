@@ -50,6 +50,7 @@ in
     nixd
     inetutils
     netcat-gnu
+    typst
 
     dunst
     mako
