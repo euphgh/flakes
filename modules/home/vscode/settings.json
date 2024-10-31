@@ -4,7 +4,7 @@
   "terminal.integrated.defaultProfile.linux": "zsh",
   "editor.formatOnSave": true,
   "editor.fontFamily": "JetBrainsMono Nerd Font",
-  "editor.formatOnSaveMode": "modifications",
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
   "editor.tabCompletion": "off",
   "terminal.integrated.fontFamily": "MesloLGS NF",
   "security.workspace.trust.enabled": false,
@@ -135,5 +135,12 @@
   "cmake.pinnedCommands": [
     "workbench.action.tasks.configureTaskRunner",
     "workbench.action.tasks.runTask"
-  ]
+  ],
+  "diffEditor.ignoreTrimWhitespace": false,
+  "tinymist.formatterMode": "typstyle",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "redhat.telemetry.enabled": false,
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "java.settings.url": "GoogleStyle",
+  "notebook.lineNumbers": "on"
 }
