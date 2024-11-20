@@ -31,14 +31,13 @@ in
 
 
   services.kdeconnect.enable = true;
-
+  
   # more unconfigurable app
   home.packages = with pkgs; [
     # util cli
     neofetch
     sshfs
     millw
-    jdk17_headless
 
     #gui tools
     simplescreenrecorder
@@ -51,6 +50,7 @@ in
     inetutils
     netcat-gnu
     typst
+    emacs
 
     dunst
     mako
@@ -84,6 +84,8 @@ in
         # "--enable-features=Vulkan"
       ];
     };
+    java.enable = true;
+    java.package = pkgs.jdk_headless;
   };
 
   home = {

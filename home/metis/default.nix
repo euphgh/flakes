@@ -25,7 +25,7 @@ in
     # util cli
     neofetch
     podman
-    jdk17_headless
+    jdk_headless
     mill-alias
     sbt
   ];

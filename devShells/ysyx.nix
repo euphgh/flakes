@@ -22,7 +22,7 @@
 , readline
 , llvmPackages
   # chisel compile
-, jdk17_headless
+, jdk_headless
 , mill
 , bloop
   # iSTA runtime depancency
@@ -47,7 +47,7 @@ mkShell {
     bison
     flex
     llvmPackages.libllvm
-    jdk17_headless
+    jdk_headless
     mill
     # bloop
   ];
