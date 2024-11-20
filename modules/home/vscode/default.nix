@@ -40,9 +40,10 @@ with lib; let cfg = config.euphgh.home.vscode; in
         # python
         ms-python.python
         ms-python.vscode-pylance
-        # slides
+        # utils
         hediet.vscode-drawio
         redhat.vscode-xml
+        # verilog
         mshr-h.veriloghdl
       ];
     };
