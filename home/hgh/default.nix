@@ -29,21 +29,18 @@ in
     utilGui.enable = true;
   };
 
-
-  services.kdeconnect.enable = true;
-  
   # more unconfigurable app
   home.packages = with pkgs; [
     # util cli
     neofetch
     sshfs
     millw
+    numactl
 
     #gui tools
     simplescreenrecorder
     gtkwave
     obsidian
-    drawio
     qq
     feishu
     nixd
@@ -51,6 +48,7 @@ in
     netcat-gnu
     typst
     emacs
+    nodejs_23
 
     dunst
     mako
