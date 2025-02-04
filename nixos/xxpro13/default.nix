@@ -1,4 +1,4 @@
-{ self, config, ... }:
+{ self, config, pkgs, ... }:
 
 {
   imports = [
@@ -18,6 +18,7 @@
     users = {
       hgh = {
         description = "Guanghui Hu";
+        extraGroups = [ "libvirtd" "wheel" ];
         # if use default home, home-manager switch will be reset when reboot
         # homeConfig = [ self.utils.defaultHome ];
       };
@@ -49,7 +50,11 @@
 
   services.openssh.settings.X11Forwarding = true;
 
+  programs.virt-manager.enable = true;
+  services.qemuGuest.enable = true;
+  services.spice-vdagentd.enable = true;
   virtualisation = {
+    libvirtd.enable = true;
     podman = {
       enable = true;
       # Create a `docker` alias for podman, to use it as a drop-in replacement
@@ -58,4 +63,7 @@
       defaultNetwork.settings.dns_enabled = true;
     };
   };
+  environment.systemPackages = with pkgs;[
+    virtiofsd
+  ];
 }

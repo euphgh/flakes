@@ -157,7 +157,8 @@ in
         corefonts
         vistafonts
         # vistafonts-chs
-        (nerdfonts.override { fonts = [ "JetBrainsMono" "FiraCode" ]; })
+        nerd-fonts.jetbrains-mono
+        nerd-fonts.fira-code
       ];
       fontconfig.defaultFonts = {
         serif = [ "Noto Serif CJK SC" "Noto Serif" ];
