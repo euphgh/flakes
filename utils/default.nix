@@ -77,7 +77,7 @@ rec {
 
           # modules: must specifiy, put all modules there
           modules = with specialArgs; [
-            nur.nixosModules.nur
+            nur.modules.nixos.default
             self.outputs.nixosModules.euphgh.sys
           ] ++ value.modules;
 
@@ -97,7 +97,7 @@ rec {
         home-manager.lib.homeManagerConfiguration {
           pkgs = nixpkgs.legacyPackages.${specialArgs.system};
           modules = with specialArgs; [
-            nur.nixosModules.nur
+            nur.modules.homeManager.default
             self.outputs.nixosModules.euphgh.home
             ({ ... }: {
               config.euphgh.home.specialArgs = {

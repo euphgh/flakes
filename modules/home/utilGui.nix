@@ -6,7 +6,7 @@ let cfg = config.euphgh.home.utilGui; in
       home = {
         packages = with pkgs; [
           chromium
-          config.nur.repos.linyinfeng.wemeet
+          nur.repos.linyinfeng.wemeet
           flameshot
           qq
         ];

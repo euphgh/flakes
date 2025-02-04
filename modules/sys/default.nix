@@ -70,7 +70,7 @@
   home-manager.useGlobalPkgs = true;
   home-manager.useUserPackages = true;
   home-manager.sharedModules = with inputs; [
-    nur.nixosModules.nur
+    nur.modules.nixos.default
     self.outputs.nixosModules.euphgh.home
   ];
   home-manager.extraSpecialArgs = builtins.removeAttrs inputs [ "pkgs" "config" "options" "lib" ];
