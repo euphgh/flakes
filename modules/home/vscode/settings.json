@@ -142,5 +142,7 @@
   "redhat.telemetry.enabled": false,
   "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
   "java.settings.url": "GoogleStyle",
-  "notebook.lineNumbers": "on"
+  "notebook.lineNumbers": "on",
+  "latex-workshop.formatting.latex": "latexindent",
+  "mesonbuild.downloadLanguageServer": true
 }
