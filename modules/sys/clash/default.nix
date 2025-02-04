@@ -60,7 +60,7 @@ in
           Group = cfg.group;
           PrivateTmp = true;
           WorkingDirectory = "${cfg.workingDirectory}";
-          ExecStartPre = "${pkgs.coreutils}/bin/ln -s ${pkgs.clash-geoip}/etc/clash/Country.mmdb ${cfg.configDirectory}";
+          ExecStartPre = "${pkgs.coreutils}/bin/ln -s ${pkgs.dbip-country-lite}/share/dbip/dbip-country-lite.mmdb ${cfg.configDirectory}/Country.mmdb";
           ExecStart = "${lib.getExe cfg.package}"
             + " -d ${cfg.configDirectory}"
             + " -f ${cfg.configPath}";
