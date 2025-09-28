@@ -1,37 +1,58 @@
 {
-  description = "euphgh create flake, including system, home, modules, templates, devShells";
+  description = "A Nix flake with modules for NixOS and Home Manager";
+
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nur.url = "github:nix-community/NUR";
+    flake-utils.url = "github:numtide/flake-utils";
+    
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    sops-nix = {
-      url = "github:Mic92/sops-nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
-  outputs = inputs: rec {
-    utils = (import ./utils) inputs;
+  outputs = { self, nixpkgs, flake-utils, home-manager }:
+    flake-utils.lib.eachDefaultSystem (system:
+      let
+        pkgs = nixpkgs.legacyPackages.${system};
+      in
+      {
+        # Development shell
+        devShells.default = pkgs.mkShell {
+          packages = with pkgs; [
+            nixfmt-rfc-style
+            direnv
+          ];
+        };
 
-    homeConfigurations = utils.createHome { };
-    nixosConfigurations = utils.createNixOS { };
-
-    nixosModules.euphgh.sys = import ./modules/sys;
-    nixosModules.euphgh.home = import ./modules/home;
-
-    devShells = with utils; foreachSysInList defaultSysList (p: import devShellsDir p);
-    packages = with utils; foreachSysInList defaultSysList (p: import packagesDir p);
-
-    templates = rec {
-      shell = {
-        path = ./templates/devShell;
-        description = "flake with only devShells using euphgh";
-        welcomeText = "welcome to use euphgh's devShells flake template !!!!!";
+        # Packages that can be built
+        packages = {
+          # Example package - you can add your own here
+          hello = pkgs.hello;
+        };
+      }
+    ) // {
+      # Standalone Home Manager configurations
+      homeConfigurations = {
+        "hgh@m4" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.aarch64-darwin;
+          modules = [
+            (./home-manager + "/hgh@m4.nix")
+            ./modules/home-manager
+          ];
+          extraSpecialArgs = { inherit self; };
+        };
+        "hgh@265k" = home-manager.lib.homeManagerConfiguration {
+          pkgs = nixpkgs.legacyPackages.x86_64-linux;
+          modules = [
+            (./home-manager + "/hgh@265k.nix")
+            ./modules/home-manager
+          ];
+          extraSpecialArgs = { inherit self; };
+        };
       };
-      default = shell;
+
+      # Custom modules
+      nixosModules.euphgh.home = import ./modules/home-manager;
     };
-  };
 }

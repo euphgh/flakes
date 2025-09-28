@@ -1,0 +1,147 @@
+{
+  "extensions.autoUpdate": false,
+  "update.mode": "none",
+  "terminal.integrated.defaultProfile.linux": "zsh",
+  "editor.formatOnSave": true,
+  "editor.fontFamily": "JetBrainsMono Nerd Font",
+  "editor.formatOnSaveMode": "modificationsIfAvailable",
+  "editor.tabCompletion": "off",
+  "terminal.integrated.fontFamily": "MesloLGS NF",
+  "security.workspace.trust.enabled": false,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "extensions.ignoreRecommendations": true,
+  "editor.cursorBlinking": "solid",
+  "editor.lineNumbers": "relative",
+  "git.autofetch": true,
+  "vim.useCtrlKeys": true,
+  "vim.autoSwitchInputMethod.enable": true,
+  "vim.autoSwitchInputMethod.defaultIM": "1",
+  "vim.autoSwitchInputMethod.obtainIMCmd": "/run/current-system/sw/bin/fcitx5-remote",
+  "vim.autoSwitchInputMethod.switchIMCmd": "/run/current-system/sw/bin/fcitx5-remote -t {im}",
+  "vim.leader": "<space>",
+  "vim.incsearch": true,
+  "vim.hlsearch": true,
+  "vim.highlightedyank.enable": true,
+  "vim.camelCaseMotion.enable": true,
+  "vim.easymotion": true,
+  "vim.normalModeKeyBindings": [
+    {
+      "before": [
+        "<C-w>"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "K"
+      ],
+      "commands": [
+        "editor.action.showHover"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "b",
+        "d"
+      ],
+      "commands": [
+        "workbench.action.closeActiveEditor"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "b",
+        "w"
+      ],
+      "commands": [
+        "workbench.action.files.save"
+      ]
+    },
+    {
+      "before": [
+        "leader",
+        "h",
+        "c"
+      ],
+      "after": [
+        ":",
+        "n",
+        "o",
+        "h",
+        "enter"
+      ]
+    }
+  ],
+  "files.watcherExclude": {
+    "**/.bloop": true,
+    "**/.metals": true,
+    "**/.ammonite": true
+  },
+  "git.confirmSync": false,
+  "nix.serverPath": "nixd",
+  "nix.enableLanguageServer": true,
+  "nix.serverSettings": {
+    "nixd": {
+      "formatting": {
+        "command": [
+          "nixpkgs-fmt"
+        ]
+      }
+    }
+  },
+  "typescript.inlayHints.enumMemberValues.enabled": true,
+  "githubPullRequests.fileListLayout": "flat",
+  "editor.unicodeHighlight.allowedLocales": {
+    "zh-hans": true
+  },
+  "workbench.iconTheme": "material-icon-theme",
+  "python.formatting.provider": "black",
+  "python.analysis.inlayHints.variableTypes": true,
+  "python.analysis.inlayHints.pytestParameters": true,
+  "python.analysis.inlayHints.functionReturnTypes": true,
+  "python.analysis.typeCheckingMode": "strict",
+  "python.analysis.completeFunctionParens": true,
+  "python.analysis.autoFormatStrings": true,
+  "path-intellisense.absolutePathToWorkspace": false,
+  "search.useGlobalIgnoreFiles": true,
+  "lldb.suppressUpdateNotifications": true,
+  "gitlens.graph.minimap.enabled": false,
+  "gitlens.graph.minimap.additionalTypes": [
+    "localBranches"
+  ],
+  "vim.foldfix": true,
+  "verilog.linting.linter": "verilator",
+  "workbench.colorTheme": "Nord",
+  "git.openRepositoryInParentFolders": "never",
+  "[verilog]": {
+    "editor.defaultFormatter": "mshr-h.veriloghdl"
+  },
+  "verilog.formatting.verilogHDL.formatter": "verible-verilog-format",
+  "hexeditor.columnWidth": 16,
+  "hexeditor.showDecodedText": true,
+  "hexeditor.defaultEndianness": "little",
+  "hexeditor.inspectorType": "aside",
+  "hediet.vscode-drawio.theme": "min",
+  "cmake.configureOnOpen": true,
+  "cmake.options.statusBarVisibility": "icon",
+  "cmake.showOptionsMovedNotification": false,
+  "cmake.pinnedCommands": [
+    "workbench.action.tasks.configureTaskRunner",
+    "workbench.action.tasks.runTask"
+  ],
+  "diffEditor.ignoreTrimWhitespace": false,
+  "tinymist.formatterMode": "typstyle",
+  "terminal.integrated.enableMultiLinePasteWarning": false,
+  "redhat.telemetry.enabled": false,
+  "java.format.settings.url": "https://raw.githubusercontent.com/google/styleguide/gh-pages/eclipse-java-google-style.xml",
+  "java.settings.url": "GoogleStyle",
+  "notebook.lineNumbers": "on",
+  "latex-workshop.formatting.latex": "latexindent",
+  "mesonbuild.downloadLanguageServer": true
+}
