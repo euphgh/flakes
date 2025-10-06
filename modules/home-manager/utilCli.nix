@@ -14,9 +14,11 @@ with lib; let cfg = config.euphgh.home.utilCli; in
         xclip
         zip
         unzip
+        p7zip
         gnupg
         pass
         bat
+        pv
       ];
     };
   };
