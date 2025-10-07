@@ -12,6 +12,7 @@
   euphgh.home = {
     enable = true;
     zsh.antidote = true;
+    tex.enable = true;
     devCli.enable = true;
     utilCli.enable = true;
   };
