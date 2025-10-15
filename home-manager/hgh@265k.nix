@@ -14,5 +14,9 @@
     zsh.antidote = true;
     devCli.enable = true;
     utilCli.enable = true;
+    tex.enable = true;
   };
+  home.packages = with pkgs; [
+    browserpass
+  ];
 }
