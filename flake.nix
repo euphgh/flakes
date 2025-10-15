@@ -18,18 +18,7 @@
       in
       {
         # Development shell
-        devShells.default = pkgs.mkShell {
-          packages = with pkgs; [
-            nixfmt-rfc-style
-            direnv
-          ];
-        };
-
-        # Packages that can be built
-        packages = {
-          # Example package - you can add your own here
-          hello = pkgs.hello;
-        };
+        devShells = import ./devShells/default.nix { nixpkgs = pkgs; self = self; system = system; };
       }
     ) // {
       # Standalone Home Manager configurations
