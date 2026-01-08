@@ -23,5 +23,7 @@
     qbittorrent
     browserpass
     zotero
+    pandoc
+    inkscape
   ];
 }
