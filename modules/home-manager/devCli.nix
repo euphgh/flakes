@@ -13,6 +13,7 @@ with lib; let cfg = config.euphgh.home.devCli; in
         nixd
         nixfmt-rfc-style
         patchelf
+        uv
         python3
         stdenv.cc
       ];
