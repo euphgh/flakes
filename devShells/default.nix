@@ -76,4 +76,24 @@ rec{
       ];
       inputsFrom = [ python-pkgs ];
     };
+  remuws = nixpkgs.mkShell {
+    packages = with nixpkgs; [
+      verilator
+      iverilog
+      boost
+      fmt
+      # yosys compiled
+      bison 
+      flex
+      readline
+      tcl
+      libffi
+      graphviz
+      xdot
+      pkg-config
+      zlib
+      cmake
+    ];
+    inputsFrom = [ python-dev cpp-dev ];
+  };
 }
