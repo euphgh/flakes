@@ -22,5 +22,7 @@
     doxygen
     pandoc
     perl
+    slang
   ];
+  home.sessionPath = [ "$HOME/.local/bin" ];
 }
