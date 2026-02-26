@@ -36,6 +36,13 @@ let cfg = config.euphgh.home.zsh; in
 
         # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
         [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+
+        # set EDITOR environment variable to vim if not in vscode, otherwise set it to code --wait
+        if [ -n "$VSCODE_INJECTION" ] || [ -n "$TERM_PROGRAM" ] && [ "$TERM_PROGRAM" = "vscode" ]; then
+          export EDITOR="code --wait"
+        else
+          export EDITOR="vim"
+        fi
       '';
     };
   };

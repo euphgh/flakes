@@ -26,4 +26,8 @@
     pandoc
     inkscape
   ];
+
+  home.sessionPath = [
+    "$HOME/.local/bin"
+  ];
 }
