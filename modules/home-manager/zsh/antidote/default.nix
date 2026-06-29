@@ -43,6 +43,7 @@ let cfg = config.euphgh.home.zsh; in
         else
           export EDITOR="vim"
         fi
+	      source $HOME/.config/env-setup/EnvSetup.zsh
       '';
     };
   };
